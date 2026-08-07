@@ -11,8 +11,13 @@ const CROSSFADE_SPEED = 800;
 function loadVideo(slideEl) {
   const video = slideEl.querySelector('[data-hero-video]');
   const src = slideEl.dataset.videoSrc;
-  if (!video || !src || video.src) return video;
+  // Explicit flag rather than reading back video.src — the flag records
+  // intent ("have we told this element to load") instead of relying on
+  // the browser's resolved-URL readback, which is a side effect, not a
+  // signal we control.
+  if (!video || !src || video.dataset.loaded === 'true') return video;
   video.src = src;
+  video.dataset.loaded = 'true';
   video.load();
   return video;
 }
