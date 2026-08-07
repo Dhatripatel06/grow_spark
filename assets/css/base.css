@@ -1,0 +1,1083 @@
+@import './tokens.css';
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    h3 { font-size: 1.375rem; }
+  }
+  @media (min-width: 1024px) {
+    h3 { font-size: 1.5rem; }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img, video {
+    max-width: 100%;
+    display: block;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+}
+
+@layer components {
+  /* Scroll-reveal: content is visible by default (safe if JS never loads).
+     reveal.js opts elements into the hidden pre-animation state itself,
+     right before animating them back in — so a JS failure can never leave
+     content stuck invisible. */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform .25s var(--ease-out-expo), background-color .2s var(--ease-standard), color .2s var(--ease-standard), border-color .2s var(--ease-standard);
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: var(--color-hairline-strong);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .btn-on-dark.btn-secondary {
+    color: var(--color-paper);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+  .btn-on-dark.btn-secondary:hover {
+    color: var(--color-accent-bright);
+    border-color: var(--color-accent-bright);
+  }
+  .btn-accent {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .btn-accent:hover {
+    background: var(--color-accent-deep);
+    transform: translateY(-2px);
+  }
+
+  .btn-arrow {
+    transition: transform .3s var(--ease-out-expo);
+  }
+  .btn:hover .btn-arrow,
+  a:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.88;
+  }
+
+  .card-elevate {
+    transition: transform .35s var(--ease-out-expo), box-shadow .35s var(--ease-out-expo), border-color .3s var(--ease-standard);
+  }
+  .card-elevate:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-xl);
+    border-color: transparent;
+  }
+
+  .mega-link {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    opacity: 0.9;
+    transition: color .2s var(--ease-standard);
+  }
+  .mega-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transition: right .3s var(--ease-out-expo), opacity .3s var(--ease-standard);
+  }
+  .mega-link:hover {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+  .mega-link:hover::after {
+    right: 0;
+    opacity: .6;
+  }
+
+  .drawer-link {
+    display: block;
+    padding: 13px 2px;
+    font-size: 15.5px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .drawer-link.is-current {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .drawer-accordion {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .drawer-accordion summary {
+    padding: 13px 2px;
+    font-size: 15.5px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+  }
+  .drawer-accordion summary::-webkit-details-marker {
+    display: none;
+  }
+  .drawer-accordion-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 2px 14px 12px;
+  }
+  .drawer-accordion-body a {
+    padding: 8px 0;
+    font-size: 14.5px;
+    color: var(--color-ink-soft);
+  }
+
+  /* ---------- Nav: two color states ----------
+     Default = floating over a dark full-bleed hero (transparent, white text).
+     .is-scrolled, or any page without a dark hero, = solid paper bar. */
+  #site-header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  #site-header .site-nav__logo,
+  #site-header .site-nav__link,
+  #site-header .site-nav__trigger,
+  #site-header .site-nav__toggle {
+    color: #fff;
+  }
+  #site-header .site-nav__link,
+  #site-header .site-nav__trigger {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color .2s var(--ease-standard);
+  }
+  #site-header .site-nav__link:hover,
+  #site-header .site-nav__trigger:hover {
+    color: #fff;
+  }
+  #site-header .site-nav__link.is-current {
+    color: var(--color-accent-bright);
+    font-weight: 500;
+  }
+
+  /* Two-line CSS-only lockup: "Grow" bold/large, "Spark" light/smaller,
+     with a small accent dot — no image, no horizontal stretching. */
+  .logo-lockup {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 3px;
+  }
+  .logo-line--grow {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-logo-primary);
+    letter-spacing: -0.01em;
+  }
+  .logo-line--spark {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-logo-secondary);
+    letter-spacing: 0.01em;
+  }
+  .logo-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+    background: var(--color-accent-bright);
+  }
+  #site-header.is-scrolled .logo-dot,
+  body:not([data-hero-theme='dark']) #site-header .logo-dot {
+    background: var(--color-accent);
+  }
+  /* Footer is a dark band (bookends the dark hero/CTA), so its wordmark and
+     dot use the same light-on-dark treatment as the unscrolled nav. */
+  footer .logo-lockup {
+    color: #fff;
+  }
+  footer .logo-dot {
+    background: var(--color-accent-bright);
+  }
+
+  /* Footer links: same underline-draw micro-interaction as the primary nav,
+     so hover quality feels consistent site-wide instead of footer being a
+     plain color-swap while nav gets the richer treatment. */
+  .footer-link {
+    position: relative;
+    display: inline-block;
+    color: rgba(255, 255, 255, .6);
+    font-size: 13.5px;
+    font-weight: 400;
+    transition: color .2s var(--ease-standard);
+    width: fit-content;
+  }
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transition: right .3s var(--ease-out-expo), opacity .3s var(--ease-standard);
+  }
+  .footer-link:hover {
+    color: var(--color-accent-bright);
+  }
+  .footer-link:hover::after {
+    right: 0;
+    opacity: .6;
+  }
+
+  /* Nav link hover: a thin underline draws in from the left. */
+  .site-nav__link,
+  .site-nav__trigger {
+    position: relative;
+    font-size: var(--fs-nav-link);
+    white-space: nowrap;
+  }
+  .site-nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transition: right .3s var(--ease-out-expo), opacity .3s var(--ease-standard);
+  }
+  .site-nav__link:hover::after {
+    right: 0;
+    opacity: .7;
+  }
+
+  #site-header .site-nav__cta {
+    background: #fff;
+    color: var(--color-ink);
+    padding: 17px 30px;
+    font-size: var(--fs-nav-cta);
+  }
+  /* Desktop: trim slightly so the CTA reads less crowded against the
+     hamburger/nav links beside it. */
+  @media (min-width: 1024px) {
+    #site-header .site-nav__cta {
+      padding: 16px 26px;
+    }
+  }
+  /* Tablet: CTA appears earlier (md, not lg) alongside the hamburger, so
+     it's trimmed slightly to keep the header from feeling crowded before
+     the primary nav links appear at lg. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    #site-header .site-nav__cta {
+      padding: 14px 22px;
+    }
+  }
+  #site-header .site-nav__cta:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  #site-header.is-scrolled,
+  body:not([data-hero-theme='dark']) #site-header {
+    background: rgba(250, 250, 248, 0.95);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom-color: var(--color-hairline);
+    box-shadow: var(--shadow-card-sm);
+  }
+  #site-header.is-scrolled .site-nav__logo,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__logo,
+  #site-header.is-scrolled .site-nav__toggle,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__toggle {
+    color: var(--color-ink);
+  }
+  #site-header.is-scrolled .site-nav__link,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__link,
+  #site-header.is-scrolled .site-nav__trigger,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__trigger {
+    color: var(--color-ink-soft);
+    opacity: 0.9;
+  }
+  #site-header.is-scrolled .site-nav__link:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__link:hover,
+  #site-header.is-scrolled .site-nav__trigger:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__trigger:hover {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+  #site-header.is-scrolled .site-nav__link.is-current,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__link.is-current {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+  #site-header.is-scrolled .site-nav__cta,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__cta {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  #site-header.is-scrolled .site-nav__cta:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__cta:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  #site-header.is-scrolled #nav-inner {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  #site-header.is-scrolled .site-nav__cta {
+    padding: 14px 26px;
+  }
+
+  /* ---------- Hero carousel ---------- */
+
+  /* Cinematic letterboxing for centered text: dark top (nav legibility) and
+     bottom (controls legibility) framing a gently-darkened middle band —
+     even enough that the footage still reads, without crushing contrast. */
+  /* Cinematic letterboxing, tuned so the clear band (where hero-text sits)
+     lets more of the footage read through than before — legibility is
+     backstopped by the text-shadows on .hero-eyebrow/.hero-headline below
+     rather than by crushing the whole frame with a heavier scrim. */
+  .hero-scrim {
+    background-image:
+      radial-gradient(90% 90% at 44% 45%, rgba(9, 11, 10, 0) 40%, rgba(9, 11, 10, .18) 100%),
+      linear-gradient(
+        180deg,
+        rgba(9, 11, 10, .56) 0%,
+        rgba(9, 11, 10, .12) 26%,
+        rgba(9, 11, 10, .16) 50%,
+        rgba(9, 11, 10, .12) 74%,
+        rgba(9, 11, 10, .58) 100%
+      );
+  }
+
+  .hero-eyebrow {
+    display: block;
+    margin-bottom: clamp(36px, 1.8vw, 44px);
+    font-family: var(--font-body);
+    font-size: var(--fs-eyebrow);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-bright);
+    text-shadow: 0 1px 16px rgba(0, 0, 0, .4);
+    opacity: 0.82;
+  }
+  @media (min-width: 1024px) {
+    .hero-eyebrow {
+      font-size: 12px;
+    }
+  }
+
+  /* max-width in ch (relative to this element's own font-size) so line
+     breaks stay proportionally the same as the fluid font-size scales —
+     a fixed px/rem cap would rewrap to more lines on large screens as the
+     type grows, which is exactly what this is avoiding. */
+  .hero-headline {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: #fff;
+    font-size: var(--fs-hero-headline);
+    line-height: 1.16;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+    max-width: 16.5ch;
+    margin: 0 auto clamp(68px, 3.6vw, 84px);
+    text-shadow: 0 6px 40px rgba(0, 0, 0, .35);
+  }
+
+  .btn-hero {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.42);
+    padding: 16px 34px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .btn-hero:hover {
+    background: #fff;
+    color: var(--color-ink);
+    border-color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .hero-play-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    flex-shrink: 0;
+    transition: border-color .2s var(--ease-standard), background-color .2s var(--ease-standard);
+  }
+  .hero-play-toggle:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .hero-play-toggle svg {
+    opacity: 0.85;
+  }
+
+  /* Swiper's own pagination CSS ships unlayered, which always wins over
+     @layer rules regardless of specificity — so bullet color is themed
+     through Swiper's own custom properties rather than fighting that. */
+  .hero-swiper {
+    --swiper-pagination-color: #fff;
+    --swiper-pagination-bullet-inactive-color: #fff;
+    --swiper-pagination-bullet-inactive-opacity: 0.16;
+  }
+  .hero-pagination .swiper-pagination-bullet {
+    position: relative;
+    width: 28px;
+    height: 1px;
+    border-radius: 2px;
+    opacity: 1;
+    margin: 0 4px !important;
+    overflow: hidden;
+  }
+  .hero-pagination-fill {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: #fff;
+    transition: width .1s linear;
+  }
+  @media (min-width: 1024px) {
+    .hero-swiper {
+      --swiper-pagination-bullet-inactive-opacity: 0.14;
+    }
+    .hero-pagination .swiper-pagination-bullet {
+      width: 25px;
+    }
+  }
+
+  .hero-scroll-cue {
+    position: absolute;
+    right: 2rem;
+    bottom: 2.5rem;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, .65);
+    animation: hero-cue-bob 2.4s var(--ease-standard) infinite;
+  }
+  @media (min-width: 640px) {
+    .hero-scroll-cue {
+      display: flex;
+    }
+  }
+  @keyframes hero-cue-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll-cue {
+      animation: none;
+    }
+  }
+
+  /* Small fixed top clearance so vertically-centered hero content can never
+     sit under the fixed nav bar. Deliberately modest: padding-top on a
+     vertically-centered flex item only shifts visible content down by
+     roughly half of what's added, and — critically — that relationship
+     inverts on tall content (long headline wrapping to 3-4 lines), where
+     growing this box further can push it BACK toward the top instead of
+     down. A small, safe constant beats a large "clever" one here. */
+  .hero-text {
+    padding-top: 24px;
+  }
+  @media (min-width: 1024px) {
+    .hero-text {
+      padding-bottom: 40px;
+    }
+  }
+
+  /* ---------- Hero responsive tuning ----------
+     Stepped breakpoint constraints (not fluid) per an explicit responsive
+     pass. Ordered largest-max-width to smallest so each block correctly
+     cascades over the previous one on screens matching multiple queries. */
+  @media (max-width: 1023px) {
+    .hero-headline {
+      max-width: 15.5ch;
+      line-height: 1.14;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-headline {
+      max-width: 13.8ch;
+      line-height: 1.12;
+    }
+    /* Extra clearance below the CTA so wrapped headlines on short mobile
+       viewports don't crowd the bottom controls bar. */
+    .hero-text {
+      padding-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .hero-eyebrow {
+      font-size: 0.7rem;
+    }
+    .btn-hero {
+      padding: 16px 28px;
+    }
+    .hero-play-toggle {
+      width: 34px;
+      height: 34px;
+    }
+    .hero-pagination .swiper-pagination-bullet {
+      width: 24px;
+    }
+  }
+
+  /* ---------- Shared section patterns ---------- */
+  .section-head {
+    max-width: var(--container-editorial);
+    margin: 0 auto clamp(3rem, 2.3rem + 2.4vw, 5rem);
+    text-align: center;
+    scroll-margin-top: 6rem;
+  }
+  .section-head h2 {
+    font-size: 1.75rem;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .section-head h2 {
+      font-size: 2.2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-head h2 {
+      font-size: 2.5rem;
+    }
+  }
+  .section-head p {
+    color: var(--color-ink-soft);
+    font-size: 16px;
+    line-height: 1.72;
+  }
+
+  /* Dark CTA banner heading (final-cta) — fluid so it doesn't rely on
+     sm:/lg: breakpoint jumps the way the raw utility chain did. */
+  .cta-heading {
+    font-size: clamp(1.875rem, 1.3rem + 2.8vw, 2.875rem);
+    line-height: 1.1;
+  }
+
+  /* Small pill labels (case-study process flow). */
+  .pill-label {
+    font-size: clamp(0.84rem, 0.8rem + 0.15vw, 0.875rem);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 12.5px;
+    color: var(--color-ink-soft);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ---------- Card system ----------
+     Cards read as raised surfaces (paper-raised sitting on the section's
+     own background) rather than bordered boxes — definition comes from
+     that surface contrast, not a resting border or resting shadow. Hover
+     response is tiered to how each card actually behaves: the cards that
+     are real clickable links (challenge, industry) get the most noticeable
+     lift; static informational tiles (outcome, why) get the lightest
+     touch; feature cards with an embedded link (pillar, insight) sit in
+     between and reveal their border on hover. */
+  .challenge-card,
+  .outcome-card,
+  .why-card,
+  .industry-card,
+  .pillar-card,
+  .insight-card {
+    background: var(--color-paper-raised);
+    border: 1px solid transparent;
+    border-radius: var(--radius-card);
+    transition: transform .3s var(--ease-out-expo), box-shadow .3s var(--ease-out-expo), border-color .25s var(--ease-standard);
+  }
+  .service-card {
+    border: 1px solid var(--color-hairline);
+    background: var(--color-paper-raised);
+    border-radius: var(--radius-card);
+  }
+
+  .challenge-card:hover,
+  .industry-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-md);
+  }
+  .outcome-card:hover,
+  .why-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-sm);
+  }
+  .pillar-card:hover,
+  .insight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-md);
+    border-color: var(--color-hairline);
+  }
+
+  .outcome-card .n,
+  .industry-card .n {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .challenge-card {
+    padding: 32px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    scroll-margin-top: 6rem;
+  }
+  .challenge-card .txt {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.28;
+    color: var(--color-ink);
+  }
+  .challenge-card .arrow {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    transition: transform .3s var(--ease-out-expo);
+  }
+  .challenge-card:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .outcome-card {
+    padding: 32px 30px;
+  }
+  .outcome-card .n {
+    color: var(--color-accent);
+  }
+  .outcome-card h4 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.28;
+  }
+
+  .pillar-card {
+    padding: 42px 36px;
+  }
+  .pillar-card:hover {
+    border-color: var(--color-accent);
+  }
+  .pillar-card .link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-ink);
+    padding-bottom: 2px;
+    transition: color .3s var(--ease-standard), border-color .3s var(--ease-standard);
+  }
+  .pillar-card:hover .link {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .why-card {
+    padding: 32px 34px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .why-card .num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .industry-card {
+    padding: 36px 28px;
+    scroll-margin-top: 6rem;
+  }
+  .industry-card .n {
+    color: var(--color-muted);
+    margin-bottom: 18px;
+  }
+  .industry-card h4,
+  .why-card h4 {
+    line-height: 1.28;
+  }
+
+  .insight-card {
+    padding: 36px;
+  }
+  .insight-card .cat {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .lead-avatar {
+    aspect-ratio: 1;
+    width: 100%;
+    border-radius: 4px;
+    background: var(--color-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-bright);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  .framework-node {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: #1E2226;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-accent-bright);
+    transition: background-color .3s var(--ease-standard), border-color .3s var(--ease-standard);
+    font-variant-numeric: tabular-nums;
+  }
+  .framework-step:hover .framework-node {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .section-head.on-dark h2 {
+    color: #fff;
+  }
+  .section-head.on-dark p {
+    color: #B9BEC3;
+  }
+
+  /* ---------- Services page ---------- */
+  .service-tab {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-hairline-strong);
+    color: var(--color-ink-soft);
+    transition: background-color .25s var(--ease-standard), color .25s var(--ease-standard), border-color .25s var(--ease-standard);
+  }
+  .service-tab:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .service-tab.is-active {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-color: var(--color-ink);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 3px;
+    padding: 30px 26px;
+    scroll-margin-top: 9rem;
+  }
+  .service-card__icon {
+    width: 22px;
+    height: 22px;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    stroke-width: 1.75;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.28;
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 14px;
+    color: var(--color-ink-soft);
+    line-height: 1.72;
+  }
+
+  .framework-mini-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 14.5px;
+    color: var(--color-ink);
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    padding: 12px 20px;
+    border-radius: 9999px;
+  }
+  .framework-mini-step span {
+    font-size: 12px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Forms (contact + newsletter) ---------- */
+  .form-field {
+    margin-bottom: 22px;
+  }
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    margin-bottom: 8px;
+  }
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-ink);
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: 8px;
+    padding: 14px 16px;
+    transition: border-color .2s var(--ease-standard);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  /* ---------- FAQ accordion (contact page) ---------- */
+  .faq-item {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 2px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-ink);
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .faq-chevron {
+    flex-shrink: 0;
+    color: var(--color-accent);
+    transition: transform .3s var(--ease-out-expo);
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  .faq-item p {
+    padding: 0 2px 22px;
+    color: var(--color-ink-soft);
+    font-size: 15px;
+    line-height: 1.72;
+  }
+
+  /* ---------- Responsive card padding ----------
+     Cards keep their existing, approved desktop padding (unique per card
+     type); only mobile/tablet get a proportional reduction so 32-42px of
+     internal padding doesn't feel oversized on a 320-767px screen. */
+  @media (max-width: 767px) {
+    .challenge-card, .why-card { padding: 24px; }
+    .outcome-card { padding: 24px 22px; }
+    .pillar-card { padding: 28px 24px; }
+    .industry-card { padding: 24px 20px; }
+    .insight-card { padding: 24px; }
+    .service-card { padding: 22px 20px; }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .challenge-card, .why-card { padding: 28px 30px; }
+    .outcome-card { padding: 28px 26px; }
+    .pillar-card { padding: 34px 30px; }
+    .industry-card { padding: 30px 24px; }
+    .insight-card { padding: 30px; }
+    .service-card { padding: 26px 22px; }
+  }
+
+  /* Case study split: tablet shows the visual first, above the text, while
+     still a single stacked column (desktop keeps its own 60/40 row order;
+     mobile follows normal document order — text first). */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .case-study-visual {
+      order: -1;
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* ---------- Responsive utilities ----------
+     Reusable primitives for container width, section rhythm and card grid
+     column-collapsing, all driven by the spacing tokens in tokens.css so
+     each concept changes in exactly one place per breakpoint. */
+  .container-site {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: var(--pad-inline);
+  }
+  .section-pad {
+    padding-block: var(--space-section);
+  }
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    display: grid;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (min-width: 1024px) {
+    .grid-2, .grid-3, .grid-4 { gap: 28px; }
+  }
+  @media (max-width: 1023px) {
+    .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 767px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+  /* Row that sits side-by-side from tablet up, stacks on mobile. */
+  .stack-mobile {
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 768px) {
+    .stack-mobile { flex-direction: row; }
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}

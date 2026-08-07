@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch a New Business — Grow Spark Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --charcoal:#14171A;
+    --charcoal-soft:#1E2226;
+    --grey:#565C63;
+    --grey-light:#8A9096;
+    --hairline:#E4E6E8;
+    --panel:#F6F7F7;
+    --emerald:#0B5E45;
+    --emerald-deep:#083F2F;
+    --emerald-tint:#E6EFEA;
+    --red-tint:#FBEEEC;
+    --red-text:#9A3B2E;
+    --ease: cubic-bezier(.4,0,.2,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; color:var(--charcoal); background:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:'Manrope', sans-serif; font-weight:700; letter-spacing:-0.02em; color:var(--charcoal);}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+  ::selection{background:var(--emerald); color:var(--white);}
+  :focus-visible{outline:2px solid var(--emerald); outline-offset:3px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} html{scroll-behavior:auto;} }
+
+  /* ---------- Header ---------- */
+  header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--hairline);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto;}
+  .logo{font-family:'Manrope', sans-serif; font-weight:800; font-size:19px; letter-spacing:-0.01em; display:flex; align-items:center; gap:9px;}
+  .logo .mark{width:9px; height:9px; border-radius:1px; background:var(--emerald); display:inline-block;}
+  .navlinks{display:flex; gap:32px; align-items:center;}
+  .navlinks a{font-size:14.5px; font-weight:500; color:var(--charcoal-soft); transition:color .2s var(--ease);}
+  .navlinks a:hover{color:var(--emerald);}
+  .nav-cta{background:var(--charcoal); color:var(--white); padding:11px 20px; border-radius:2px; font-size:13px; font-weight:600; transition:background .2s var(--ease); white-space:nowrap;}
+  .nav-cta:hover{background:var(--emerald);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{display:block; width:22px; height:2px; background:var(--charcoal); margin:5px 0;}
+
+  /* ---------- Buttons ---------- */
+  .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn-primary{background:var(--charcoal); color:var(--white); padding:16px 30px; font-size:14.5px; font-weight:600; border-radius:2px; transition:background .2s var(--ease);}
+  .btn-primary:hover{background:var(--emerald);}
+  .btn-secondary{border:1px solid var(--hairline); color:var(--charcoal); padding:16px 30px; font-size:14.5px; font-weight:600; border-radius:2px; transition:border-color .2s var(--ease), color .2s var(--ease);}
+  .btn-secondary:hover{border-color:var(--emerald); color:var(--emerald);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:110px 0 90px; border-bottom:1px solid var(--hairline); text-align:center;}
+  .hero .wrap{max-width:840px;}
+  .eyebrow{font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--emerald); margin-bottom:22px; display:block;}
+  .hero h1{font-size:clamp(32px,5.2vw,54px); line-height:1.14; margin-bottom:28px;}
+  .hero .lines p{font-size:16px; color:var(--grey); line-height:1.55; margin-bottom:2px;}
+  .hero .lines{margin-bottom:26px;}
+  .hero .lede{font-size:17.5px; color:var(--charcoal-soft); font-weight:500; max-width:660px; margin:0 auto 40px; line-height:1.6;}
+
+  /* ---------- Section heading ---------- */
+  .section-head{max-width:680px; margin:0 auto 52px; text-align:center;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(26px,3.8vw,38px); margin-bottom:16px;}
+  .section-head p{color:var(--grey); font-size:16.5px;}
+
+  /* ---------- Qualifiers (Section 2) ---------- */
+  .qualify{padding:100px 0; background:var(--panel);}
+  .qualify-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); margin-bottom:40px;}
+  .qualify-item{background:var(--white); padding:24px 28px; display:flex; gap:14px; align-items:flex-start;}
+  .qualify-item .mark2{color:var(--emerald); font-family:'Manrope'; font-weight:800; font-size:15px; flex-shrink:0; margin-top:1px;}
+  .qualify-item p{font-size:15px; color:var(--charcoal-soft); font-weight:500;}
+  .qualify-note{max-width:640px; margin:0 auto; text-align:center; color:var(--grey); font-size:15.5px;}
+  .qualify-note strong{color:var(--charcoal);}
+
+  /* ---------- Why startups fail (Section 3) ---------- */
+  .fail{padding:110px 0;}
+  .fail-intro{max-width:680px; margin:0 auto 48px; text-align:center;}
+  .fail-intro p{font-size:16.5px; color:var(--grey); margin-bottom:4px;}
+  .fail-intro .diff{font-family:'Manrope'; font-weight:700; font-size:19px; color:var(--charcoal); margin-top:14px;}
+  .fail-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .fail-item{background:var(--red-tint); padding:22px 24px; display:flex; gap:12px; align-items:flex-start;}
+  .fail-item .mark2{color:var(--red-text); font-family:'Manrope'; font-weight:800; font-size:14px; flex-shrink:0; margin-top:1px;}
+  .fail-item p{font-size:14.5px; color:var(--red-text); font-weight:500;}
+  .fail-note{text-align:center; color:var(--grey); font-size:15px; margin-top:36px; max-width:600px; margin-left:auto; margin-right:auto;}
+
+  /* ---------- Build it right (Section 4) ---------- */
+  .foundation{padding:100px 0; background:var(--charcoal); color:var(--white); text-align:center;}
+  .foundation .wrap{max-width:680px;}
+  .foundation .eyebrow{color:#6FE3B4;}
+  .foundation .lines p{font-family:'Manrope'; font-weight:600; font-size:clamp(18px,2.4vw,23px); color:#B9BEC3; margin-bottom:2px;}
+  .foundation .lines p.strong{color:var(--white);}
+  .foundation .conclusion{margin-top:30px; font-size:16.5px; color:#D6D9DC; line-height:1.6;}
+
+  /* ---------- What we build together (Section 5) ---------- */
+  .build-together{padding:110px 0; background:var(--panel);}
+  .build-chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:36px;}
+  .build-chips span{font-size:13.5px; font-weight:600; color:var(--charcoal-soft); border:1px solid var(--hairline); padding:10px 18px; border-radius:20px; background:var(--white);}
+  .build-note{text-align:center; font-family:'Manrope'; font-weight:700; font-size:18px; color:var(--charcoal);}
+
+  /* ---------- Framework (Section 6) ---------- */
+  .framework{padding:130px 0; background:var(--charcoal); color:var(--white); overflow:hidden;}
+  .framework .section-head h2, .framework .section-head p{color:var(--white);}
+  .framework .section-head p{color:#B9BEC3;}
+  .framework .eyebrow{color:#4FCB9B;}
+  .fw-diagram{display:flex; align-items:flex-end; justify-content:space-between; margin-top:70px; position:relative;}
+  .fw-line{position:absolute; left:0; right:0; top:calc(50% - 1px); height:1px; background:rgba(255,255,255,0.14); z-index:0;}
+  .fw-step{flex:1; position:relative; z-index:1; text-align:center; padding:0 14px;}
+  .fw-step .node{width:52px; height:52px; border-radius:50%; background:var(--charcoal-soft); border:1px solid rgba(255,255,255,0.18); margin:0 auto 22px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:14px; color:#4FCB9B; transition:background .3s var(--ease), border-color .3s var(--ease);}
+  .fw-step:hover .node{background:var(--emerald); border-color:var(--emerald);}
+  .fw-step h4{color:var(--white); font-size:17px; margin-bottom:10px; font-weight:700;}
+  .fw-step p{color:#9BA1A7; font-size:13.5px; max-width:190px; margin:0 auto;}
+
+  /* ---------- Outcomes (Section 7) ---------- */
+  .outcomes{padding:110px 0;}
+  .outcomes-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .outcome-card{background:var(--white); padding:28px 20px;}
+  .outcome-card .n{font-family:'Manrope'; font-weight:700; font-size:12px; color:var(--emerald); margin-bottom:12px; display:block;}
+  .outcome-card h4{font-size:14.5px; font-weight:600; line-height:1.35;}
+
+  /* ---------- Who we work with (Section 8) ---------- */
+  .who{padding:110px 0; background:var(--panel);}
+  .who-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); max-width:820px; margin:0 auto;}
+  .who-item{background:var(--white); padding:22px 26px; font-size:15.5px; font-weight:500; color:var(--charcoal-soft);}
+
+  /* ---------- Why founders choose (Section 9) ---------- */
+  .why{padding:110px 0;}
+  .why-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .why-card{background:var(--white); padding:28px 30px; display:flex; gap:16px; align-items:flex-start;}
+  .why-card .num{font-family:'Manrope'; font-weight:800; font-size:14px; color:var(--emerald); flex-shrink:0;}
+  .why-card p{font-size:15.5px; color:var(--charcoal-soft); font-weight:500;}
+
+  /* ---------- FAQ (Section 10) ---------- */
+  .faq{padding:110px 0; background:var(--panel);}
+  .faq-list{max-width:760px; margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--hairline);}
+  .faq-q{width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:24px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:'Manrope'; font-weight:600; font-size:16.5px; color:var(--charcoal);}
+  .faq-q .plus{font-size:20px; color:var(--emerald); transition:transform .25s var(--ease); flex-shrink:0;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s var(--ease);}
+  .faq-a p{padding-bottom:24px; color:var(--grey); font-size:15px; max-width:640px;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{padding:120px 0; text-align:center; background:var(--charcoal); color:var(--white);}
+  .final-cta h2{color:var(--white); font-size:clamp(28px,4.2vw,44px); margin-bottom:20px; line-height:1.15;}
+  .final-cta p{color:#9BA1A7; margin-bottom:40px; font-size:16.5px; max-width:520px; margin-left:auto; margin-right:auto;}
+  .final-cta .btn-secondary{border-color:rgba(255,255,255,0.25); color:var(--white);}
+  .final-cta .btn-secondary:hover{border-color:var(--emerald); color:#4FCB9B;}
+  .final-cta .btn-primary{background:var(--emerald);}
+  .final-cta .btn-primary:hover{background:#0e7a58;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:56px 0 40px; border-top:1px solid var(--hairline); text-align:center;}
+  footer .statement{max-width:600px; margin:0 auto 20px; color:var(--grey); font-size:15px;}
+  footer .statement strong{display:block; color:var(--charcoal); font-family:'Manrope'; font-weight:700; font-size:16px; margin-bottom:8px;}
+  footer .foot-links{display:flex; justify-content:center; gap:24px; margin-bottom:24px; flex-wrap:wrap;}
+  footer .foot-links a{font-size:14px; color:var(--charcoal-soft);}
+  footer .foot-links a:hover{color:var(--emerald);}
+  footer .copyright{font-size:13px; color:var(--grey-light);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .nav-toggle{display:block;}
+    .qualify-grid, .fail-grid, .outcomes-grid, .who-grid, .why-grid{grid-template-columns:1fr;}
+    .fw-diagram{flex-direction:column; gap:36px; align-items:flex-start;}
+    .fw-line{display:none;}
+    .fw-step{text-align:left; display:flex; align-items:center; gap:18px; max-width:none;}
+    .fw-step .node{margin:0;}
+    .fw-step p{max-width:none; margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo"><span class="mark"></span>Grow Spark</a>
+    <div class="navlinks">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#challenges">Business Challenges</a>
+      <a href="index.html#framework">Our Framework</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#insights">Insights</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="#assessment" class="nav-cta">Start Venture Build</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap reveal">
+    <span class="eyebrow">Launch a New Business</span>
+    <h1>Great Businesses Don't Start With Great Ideas. They Start With Great Execution.</h1>
+    <div class="lines">
+      <p>Launching a business is one of the most important investments you'll ever make.</p>
+      <p>Yet most new ventures fail — not because the idea was bad, but because the business was never designed to scale.</p>
+      <p>Markets weren't validated. Customers weren't understood. The operating model was weak.</p>
+      <p>Hiring happened too early. Technology became an afterthought. Marketing started before positioning.</p>
+    </div>
+    <p class="lede">At Grow Spark Consulting, we help founders, investors and leadership teams build businesses the right way — from strategy and validation to launch and scalable growth.</p>
+    <div class="cta-row">
+      <a href="#assessment" class="btn-primary">Start Your Venture Build Assessment™</a>
+      <a href="#framework" class="btn-secondary">Explore Our Venture Build Framework</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: QUALIFIERS -->
+<section class="qualify">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Getting Started</span>
+      <h2>Are You About To Launch A Business?</h2>
+    </div>
+    <div class="qualify-grid reveal">
+      <div class="qualify-item"><span class="mark2">—</span><p>You're starting a new company.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You've raised funding.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You're entering a new market.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You have an idea but need validation.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You want to build a premium brand from day one.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You're unsure how to structure operations.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You don't want to waste money on avoidable mistakes.</p></div>
+      <div class="qualify-item"><span class="mark2">—</span><p>You want experienced advisors to help build the company with you.</p></div>
+    </div>
+    <p class="qualify-note reveal"><strong>If that's where you are today, you're exactly the kind of business we work with.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 3: WHY STARTUPS FAIL -->
+<section class="fail" id="why-startups-fail">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Reality</span>
+      <h2>Why Most Startups Fail</h2>
+    </div>
+    <div class="fail-intro reveal">
+      <p>Most founders focus on building products.</p>
+      <p>Successful founders build businesses.</p>
+      <p class="diff">The difference matters.</p>
+    </div>
+    <div class="fail-grid reveal">
+      <div class="fail-item"><span class="mark2">—</span><p>Building products customers don't need.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>Weak market positioning.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>Poor pricing strategy.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>Hiring the wrong people.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>No scalable operating model.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>Technology decisions made too late.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>No go-to-market strategy.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>No customer acquisition plan.</p></div>
+      <div class="fail-item"><span class="mark2">—</span><p>No leadership systems.</p></div>
+    </div>
+    <p class="fail-note reveal">The earlier these problems are solved, the greater the probability of long-term success.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: BUILD IT RIGHT -->
+<section class="foundation">
+  <div class="wrap reveal">
+    <span class="eyebrow">Build It Right The First Time</span>
+    <div class="lines">
+      <p>Every decision you make in the early stages compounds.</p>
+      <p class="strong">Good decisions create momentum.</p>
+      <p>Poor decisions become expensive to fix.</p>
+    </div>
+    <p class="conclusion">Our Venture Build practice helps founders avoid years of unnecessary trial and error by building a business on a strong strategic foundation.</p>
+  </div>
+</section>
+
+<!-- SECTION 5: WHAT WE BUILD TOGETHER -->
+<section class="build-together" id="assessment">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Build Together</span>
+      <h2>Every Engagement Is Tailored — And May Include</h2>
+    </div>
+    <div class="build-chips reveal">
+      <span>Business Strategy</span><span>Market Research</span><span>Business Model Design</span>
+      <span>Customer Research</span><span>Competitive Analysis</span><span>Financial Planning</span>
+      <span>Brand Strategy</span><span>Premium Positioning</span><span>Go-To-Market Strategy</span>
+      <span>Pricing Strategy</span><span>Technology Roadmap</span><span>AI Strategy</span>
+      <span>Operating Model</span><span>Hiring Strategy</span><span>Leadership Structure</span>
+      <span>Sales Systems</span><span>Marketing Systems</span><span>Customer Experience</span>
+      <span>KPIs &amp; Dashboards</span><span>Launch Planning</span><span>Growth Roadmap</span>
+    </div>
+    <p class="build-note reveal">We don't simply advise. We help build the company.</p>
+  </div>
+</section>
+
+<!-- SECTION 6: FRAMEWORK -->
+<section class="framework" id="framework">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Methodology</span>
+      <h2>The Grow Spark Venture Build Framework™</h2>
+    </div>
+    <div class="fw-diagram reveal">
+      <div class="fw-line"></div>
+      <div class="fw-step"><div class="node">01</div><h4>Discover</h4><p>Understand the vision, founder goals and market opportunity.</p></div>
+      <div class="fw-step"><div class="node">02</div><h4>Validate</h4><p>Research the market, customers, competitors and business model.</p></div>
+      <div class="fw-step"><div class="node">03</div><h4>Design</h4><p>Create the complete business architecture.</p></div>
+      <div class="fw-step"><div class="node">04</div><h4>Build</h4><p>Develop the operating model, systems, brand and launch plan.</p></div>
+      <div class="fw-step"><div class="node">05</div><h4>Launch</h4><p>Execute with confidence and prepare for sustainable growth.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: OUTCOMES -->
+<section class="outcomes">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Outcomes We Help Create</span>
+      <h2>What Founders Walk Away With</h2>
+    </div>
+    <div class="outcomes-grid reveal">
+      <div class="outcome-card"><span class="n">01</span><h4>Businesses Built On Validated Opportunities</h4></div>
+      <div class="outcome-card"><span class="n">02</span><h4>Clear Market Positioning</h4></div>
+      <div class="outcome-card"><span class="n">03</span><h4>Scalable Operating Systems</h4></div>
+      <div class="outcome-card"><span class="n">04</span><h4>Premium Brands</h4></div>
+      <div class="outcome-card"><span class="n">05</span><h4>High-Performing Leadership Teams</h4></div>
+      <div class="outcome-card"><span class="n">06</span><h4>Technology Ready For Future Growth</h4></div>
+      <div class="outcome-card"><span class="n">07</span><h4>Investor-Ready Businesses</h4></div>
+      <div class="outcome-card"><span class="n">08</span><h4>Faster Time To Market</h4></div>
+      <div class="outcome-card"><span class="n">09</span><h4>Reduced Execution Risk</h4></div>
+      <div class="outcome-card"><span class="n">10</span><h4>Long-Term Competitive Advantage</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: WHO WE WORK WITH -->
+<section class="who">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Who We Work With</span>
+      <h2>Built For Builders</h2>
+    </div>
+    <div class="who-grid reveal">
+      <div class="who-item">Funded startups</div>
+      <div class="who-item">First-time founders</div>
+      <div class="who-item">Serial entrepreneurs</div>
+      <div class="who-item">Family businesses launching new ventures</div>
+      <div class="who-item">Corporate innovation teams</div>
+      <div class="who-item">Investors building portfolio companies</div>
+      <div class="who-item">Businesses expanding into new markets</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: WHY FOUNDERS CHOOSE -->
+<section class="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Grow Spark</span>
+      <h2>Why Founders Choose Grow Spark</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><span class="num">01</span><p>We think like business builders.</p></div>
+      <div class="why-card"><span class="num">02</span><p>We balance strategy with execution.</p></div>
+      <div class="why-card"><span class="num">03</span><p>We design businesses before they become complex.</p></div>
+      <div class="why-card"><span class="num">04</span><p>We challenge assumptions.</p></div>
+      <div class="why-card"><span class="num">05</span><p>We bring structure to uncertainty.</p></div>
+      <div class="why-card"><span class="num">06</span><p>We stay involved beyond launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you build the company for us?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We work alongside founders and leadership teams to design the business, establish the operating model and guide implementation. We remain strategic partners throughout the process.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can you help before we've raised funding?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Many founders engage us before fundraising to validate their opportunity, strengthen their business model and prepare investor-ready plans.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you also help after launch?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. We support businesses through launch, growth, operational improvement and ongoing advisory.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can you help with branding, hiring and technology?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Where appropriate, we coordinate these workstreams as part of an integrated Venture Build programme rather than as isolated services.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap reveal">
+    <h2>Build A Business Designed To Scale.</h2>
+    <p>Every successful company starts with a series of strategic decisions. Make the right ones from day one.</p>
+    <div class="cta-row">
+      <a href="#assessment" class="btn-primary">Start Your Venture Build Assessment™</a>
+      <a href="index.html#contact" class="btn-secondary">Book An Executive Strategy Session</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="statement">
+      <strong>Grow Spark Consulting partners with founders, investors and leadership teams to build businesses that are designed for long-term growth.</strong>
+      We don't just launch companies. We help build businesses that can endure.
+    </p>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#framework">Framework</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <p class="copyright">© 2026 Grow Spark Consulting. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.1});
+  revealEls.forEach(el=>io.observe(el));
+
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.navlinks');
+  toggle.addEventListener('click', ()=>{
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; padding:24px 32px; border-bottom:1px solid #E4E6E8; gap:20px;';
+  });
+
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other=>{
+        if(other !== item){ other.classList.remove('open'); other.querySelector('.faq-a').style.maxHeight = null; }
+      });
+      item.classList.toggle('open', !isOpen);
+      a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+    });
+  });
+</script>
+
+</body>
+</html>

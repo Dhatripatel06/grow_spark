@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grow Spark Consulting — Building Companies That Outperform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --charcoal:#14171A;
+    --charcoal-soft:#1E2226;
+    --grey:#565C63;
+    --grey-light:#8A9096;
+    --hairline:#E4E6E8;
+    --panel:#F6F7F7;
+    --emerald:#0B5E45;
+    --emerald-deep:#083F2F;
+    --emerald-tint:#E6EFEA;
+    --shadow: 0 1px 2px rgba(20,23,26,0.04);
+    --ease: cubic-bezier(.4,0,.2,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--charcoal);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    color:var(--charcoal);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+  ::selection{background:var(--emerald); color:var(--white);}
+  :focus-visible{outline:2px solid var(--emerald); outline-offset:3px;}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Manrope', sans-serif; font-weight:800; font-size:19px;
+    letter-spacing:-0.01em; display:flex; align-items:center; gap:9px;
+  }
+  .logo .mark{
+    width:9px; height:9px; border-radius:1px;
+    background:var(--emerald);
+    display:inline-block;
+  }
+  .navlinks{display:flex; gap:36px; align-items:center;}
+  .navlinks a{
+    font-size:14.5px; font-weight:500; color:var(--charcoal-soft);
+    transition:color .2s var(--ease);
+    position:relative;
+  }
+  .navlinks a:hover{color:var(--emerald);}
+  .nav-cta{
+    background:var(--charcoal); color:var(--white);
+    padding:11px 20px; border-radius:2px; font-size:13px; font-weight:600;
+    transition:background .2s var(--ease);
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--emerald);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{display:block; width:22px; height:2px; background:var(--charcoal); margin:5px 0;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:120px 0 100px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .hero .wrap{max-width:900px; text-align:center;}
+  .eyebrow{
+    font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--emerald); margin-bottom:22px; display:block;
+  }
+  .hero h1{
+    font-size:clamp(38px, 6vw, 68px); line-height:1.06; margin-bottom:26px;
+  }
+  .hero p{
+    font-size:19px; color:var(--grey); max-width:620px; margin:0 auto 40px;
+    font-weight:400;
+  }
+  .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--charcoal); color:var(--white); padding:16px 30px;
+    font-size:14.5px; font-weight:600; border-radius:2px;
+    transition:background .2s var(--ease), transform .2s var(--ease);
+  }
+  .btn-primary:hover{background:var(--emerald);}
+  .btn-secondary{
+    border:1px solid var(--hairline); color:var(--charcoal); padding:16px 30px;
+    font-size:14.5px; font-weight:600; border-radius:2px;
+    transition:border-color .2s var(--ease), color .2s var(--ease);
+  }
+  .btn-secondary:hover{border-color:var(--emerald); color:var(--emerald);}
+
+  /* ---------- Trust bar (statistics, no placeholder logos) ---------- */
+  .trust{padding:64px 0; border-bottom:1px solid var(--hairline);}
+  .trust-label{
+    text-align:center; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--grey-light); font-weight:600; margin-bottom:40px;
+  }
+  .trust-stats{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:24px;
+  }
+  .stat{text-align:center;}
+  .stat .num{font-family:'Manrope'; font-weight:800; font-size:32px; color:var(--charcoal);}
+  .stat .label{font-size:12.5px; color:var(--grey); margin-top:6px; line-height:1.4;}
+
+  /* ---------- Executive Summary ---------- */
+  .exec-summary{padding:100px 0; border-bottom:1px solid var(--hairline);}
+  .exec-summary .wrap{max-width:740px; text-align:center;}
+  .exec-summary .lines p{
+    font-family:'Manrope'; font-weight:600; font-size:clamp(19px,2.6vw,26px);
+    color:var(--grey-light); line-height:1.5; margin-bottom:2px;
+  }
+  .exec-summary .lines p.strong{color:var(--charcoal);}
+  .exec-summary .conclusion{
+    margin-top:34px; font-size:17px; color:var(--charcoal-soft); font-weight:500; line-height:1.6;
+  }
+
+  /* ---------- Business Outcomes ---------- */
+  .outcomes{padding:110px 0;}
+  .outcomes-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .outcome-card{background:var(--white); padding:30px 28px;}
+  .outcome-card .n{font-family:'Manrope'; font-weight:700; font-size:12px; color:var(--emerald); margin-bottom:14px; display:block;}
+  .outcome-card h4{font-size:16px; font-weight:600;}
+
+  /* ---------- Enterprise value strip ---------- */
+  .ev-strip{padding:46px 0; background:var(--emerald-tint); text-align:center;}
+  .ev-strip p{
+    font-family:'Manrope'; font-weight:700; font-size:clamp(16px,2.2vw,20px); color:var(--emerald-deep);
+    max-width:760px; margin:0 auto; line-height:1.5;
+  }
+
+  /* ---------- Why Grow Spark ---------- */
+  .why{padding:110px 0; background:var(--panel);}
+  .why-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .why-card{background:var(--white); padding:30px 32px; display:flex; gap:18px; align-items:flex-start;}
+  .why-card .num{font-family:'Manrope'; font-weight:800; font-size:15px; color:var(--emerald); flex-shrink:0;}
+  .why-card h4{font-size:16.5px; font-weight:600; margin-bottom:6px;}
+  .why-card p{font-size:14px; color:var(--grey);}
+
+  /* ---------- Insights categories row ---------- */
+  .ins-categories{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:48px;}
+  .ins-categories span{
+    font-size:12.5px; font-weight:600; color:var(--grey); border:1px solid var(--hairline);
+    padding:8px 16px; border-radius:20px; background:var(--white);
+  }
+
+  /* ---------- Leadership ---------- */
+  .leadership{padding:110px 0; background:var(--panel);}
+  .lead-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:28px;}
+  .lead-card{text-align:center;}
+  .lead-photo{
+    aspect-ratio:1; background:var(--charcoal); border-radius:2px; width:100%;
+    display:flex; align-items:center; justify-content:center;
+    color:#4FCB9B; font-family:'Manrope'; font-weight:800; font-size:26px; margin-bottom:18px;
+  }
+  .lead-card h4{font-size:16px; margin-bottom:4px;}
+  .lead-card .role{font-size:13px; color:var(--emerald); font-weight:600;}
+
+  /* ---------- Section heading pattern ---------- */
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(28px,4vw,40px); margin-bottom:16px;}
+  .section-head p{color:var(--grey); font-size:16.5px;}
+
+  /* ---------- Business Challenges ---------- */
+  .challenges{padding:110px 0; background:var(--panel);}
+  .challenge-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
+    background:var(--hairline); border:1px solid var(--hairline);
+  }
+  .challenge-card{
+    background:var(--white); padding:32px 34px; display:flex; align-items:center;
+    justify-content:space-between; gap:20px;
+    transition:background .25s var(--ease);
+  }
+  .challenge-card:hover{background:var(--emerald-tint);}
+  .challenge-card span.txt{
+    font-family:'Manrope'; font-weight:600; font-size:17px; color:var(--charcoal);
+  }
+  .challenge-card .arrow{
+    font-size:18px; color:var(--emerald); flex-shrink:0;
+    transition:transform .25s var(--ease);
+  }
+  .challenge-card:hover .arrow{transform:translateX(4px);}
+
+  /* ---------- Pillars ---------- */
+  .pillars{padding:110px 0;}
+  .pillar-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .pillar{
+    border:1px solid var(--hairline); padding:42px 34px;
+    transition:border-color .25s var(--ease), transform .25s var(--ease);
+  }
+  .pillar:hover{border-color:var(--emerald); transform:translateY(-4px);}
+  .pillar .tag{
+    font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--emerald); margin-bottom:20px; display:block;
+  }
+  .pillar h3{font-size:24px; margin-bottom:14px;}
+  .pillar p{color:var(--grey); font-size:15px; margin-bottom:26px;}
+  .pillar .link{font-size:14px; font-weight:600; color:var(--charcoal); border-bottom:1px solid var(--charcoal); padding-bottom:2px;}
+  .pillar:hover .link{color:var(--emerald); border-color:var(--emerald);}
+
+  /* ---------- Framework (signature section) ---------- */
+  .framework{
+    padding:130px 0; background:var(--charcoal); color:var(--white);
+    overflow:hidden;
+  }
+  .framework .section-head h2, .framework .section-head p{color:var(--white);}
+  .framework .section-head p{color:#B9BEC3;}
+  .framework .eyebrow{color:#4FCB9B;}
+  .fw-diagram{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:0; margin-top:70px; position:relative;
+  }
+  .fw-line{
+    position:absolute; left:0; right:0; top:calc(50% - 1px); height:1px;
+    background:rgba(255,255,255,0.14); z-index:0;
+  }
+  .fw-step{
+    flex:1; position:relative; z-index:1; text-align:center; padding:0 14px;
+  }
+  .fw-step .node{
+    width:52px; height:52px; border-radius:50%; background:var(--charcoal-soft);
+    border:1px solid rgba(255,255,255,0.18); margin:0 auto 22px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Manrope'; font-weight:700; font-size:14px; color:#4FCB9B;
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .fw-step:hover .node{background:var(--emerald); border-color:var(--emerald); color:var(--white);}
+  .fw-step h4{color:var(--white); font-size:17px; margin-bottom:10px; font-weight:700;}
+  .fw-step p{color:#9BA1A7; font-size:13.5px; max-width:180px; margin:0 auto;}
+
+  /* ---------- Industries ---------- */
+  .industries{padding:110px 0;}
+  .ind-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .ind-card{background:var(--white); padding:36px 26px; transition:background .25s var(--ease);}
+  .ind-card:hover{background:var(--emerald-tint);}
+  .ind-card .n{font-family:'Manrope'; font-weight:700; font-size:12px; color:var(--grey-light); margin-bottom:16px; display:block;}
+  .ind-card h4{font-size:16.5px; font-weight:600;}
+
+  /* ---------- Insights ---------- */
+  .insights{padding:110px 0; background:var(--panel);}
+  .ins-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .ins-card{background:var(--white); border:1px solid var(--hairline); padding:34px;}
+  .ins-card .cat{font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--emerald); margin-bottom:16px; display:block;}
+  .ins-card h4{font-size:18.5px; margin-bottom:12px; line-height:1.3;}
+  .ins-card p{color:var(--grey); font-size:14.5px;}
+
+  /* ---------- Case Study ---------- */
+  .case{padding:110px 0;}
+  .case-flow{
+    display:flex; justify-content:space-between; align-items:center; margin:60px 0 64px; flex-wrap:wrap; gap:10px;
+  }
+  .case-flow .cf-step{
+    font-family:'Manrope'; font-weight:600; font-size:14px; color:var(--charcoal);
+    padding:10px 18px; border:1px solid var(--hairline); border-radius:20px;
+  }
+  .case-flow .cf-arrow{color:var(--grey-light); font-size:15px;}
+  .case-box{
+    border:1px solid var(--hairline); padding:52px; display:grid; grid-template-columns:1fr 1fr; gap:50px;
+  }
+  .case-box .eyebrow{margin-bottom:16px;}
+  .case-box h3{font-size:26px; margin-bottom:18px; line-height:1.25;}
+  .case-box p{color:var(--grey); font-size:15.5px; margin-bottom:24px;}
+  .case-stats{display:flex; gap:40px;}
+  .case-stats .num{font-family:'Manrope'; font-weight:800; font-size:32px; color:var(--emerald);}
+  .case-stats .label{font-size:13px; color:var(--grey); margin-top:4px;}
+  .case-box .visual{
+    background:var(--panel); border:1px solid var(--hairline);
+    display:flex; align-items:center; justify-content:center; min-height:220px;
+    font-family:'Manrope'; font-weight:700; color:var(--grey-light); font-size:14px;
+  }
+
+  /* ---------- Founder ---------- */
+  .founder{padding:110px 0; background:var(--panel);}
+  .founder-box{display:grid; grid-template-columns:280px 1fr; gap:56px; align-items:center;}
+  .founder-photo{
+    aspect-ratio:1; background:var(--charcoal); border-radius:2px;
+    display:flex; align-items:center; justify-content:center;
+    color:#4FCB9B; font-family:'Manrope'; font-weight:800; font-size:44px;
+  }
+  .founder h3{font-size:26px; margin-bottom:6px;}
+  .founder .role{color:var(--emerald); font-size:14px; font-weight:600; margin-bottom:22px; display:block;}
+  .founder p{color:var(--grey); font-size:16px; max-width:560px;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{padding:120px 0; text-align:center; background:var(--charcoal); color:var(--white);}
+  .final-cta h2{color:var(--white); font-size:clamp(30px,4.5vw,46px); margin-bottom:20px;}
+  .final-cta p{color:#9BA1A7; margin-bottom:40px; font-size:17px;}
+  .final-cta .cta-row .btn-secondary{border-color:rgba(255,255,255,0.25); color:var(--white);}
+  .final-cta .cta-row .btn-secondary:hover{border-color:var(--emerald); color:#4FCB9B;}
+  .final-cta .btn-primary{background:var(--emerald);}
+  .final-cta .btn-primary:hover{background:#0e7a58;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:64px 0 40px; border-top:1px solid var(--hairline);}
+  .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:56px;}
+  .footer-brand .logo{margin-bottom:16px;}
+  .footer-brand p{color:var(--grey); font-size:14px; max-width:260px;}
+  .footer-col h5{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey-light); margin-bottom:18px;}
+  .footer-col a{display:block; font-size:14.5px; color:var(--charcoal-soft); margin-bottom:12px; transition:color .2s var(--ease);}
+  .footer-col a:hover{color:var(--emerald);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:28px;
+    border-top:1px solid var(--hairline); flex-wrap:wrap; gap:14px;
+  }
+  .footer-bottom p{color:var(--grey-light); font-size:13px;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .nav-toggle{display:block;}
+    .challenge-grid, .pillar-grid, .ind-grid, .ins-grid, .outcomes-grid, .why-grid{grid-template-columns:1fr;}
+    .trust-stats{grid-template-columns:repeat(2,1fr); row-gap:32px;}
+    .case-box{grid-template-columns:1fr;}
+    .founder-box{grid-template-columns:1fr; text-align:center;}
+    .founder-photo{width:160px; margin:0 auto;}
+    .lead-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-top{grid-template-columns:1fr 1fr; row-gap:32px;}
+    .fw-diagram{flex-direction:column; gap:36px; align-items:flex-start;}
+    .fw-line{display:none;}
+    .fw-step{text-align:left; display:flex; align-items:center; gap:18px; max-width:none;}
+    .fw-step .node{margin:0;}
+    .fw-step p{max-width:none; margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo"><span class="mark"></span>Grow Spark</a>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#challenges">Business Challenges</a>
+      <a href="#framework">Our Framework</a>
+      <a href="#industries">Industries</a>
+      <a href="#insights">Insights</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Book Executive Strategy Session</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap reveal">
+    <span class="eyebrow"></span>
+    <h1>Building Companies That Outperform Their Competition.</h1>
+    <p>Grow Spark partners with founders and leadership teams to redesign businesses for sustainable growth — through strategy, technology and execution that compound into measurable enterprise value.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn-primary">Book Executive Strategy Session</a>
+      <a href="#framework" class="btn-secondary">Explore Our Framework</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="exec-summary">
+  <div class="wrap reveal">
+    <div class="lines">
+      <p>Every business reaches a point where growth slows.</p>
+      <p>Markets evolve.</p>
+      <p>Technology changes.</p>
+      <p class="strong">Customers expect more.</p>
+    </div>
+    <p class="conclusion">The companies that continuously adapt outperform those that don't. Grow Spark partners with founders and leadership teams to redesign businesses for sustainable growth through strategy, technology and execution — as a strategic advisor, not a service provider.</p>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap reveal">
+    <span class="trust-label">Built On Methodology, Not Claims</span>
+    <div class="trust-stats">
+      <div class="stat"><div class="num">8</div><div class="label">Industries Served</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">Proprietary Framework</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Framework Phases</div></div>
+      <div class="stat"><div class="num">12+</div><div class="label">Countries Worked In</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Core Disciplines — Strategy, Technology, Execution</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS CHALLENGES -->
+<section class="challenges" id="challenges">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Start With The Problem</span>
+      <h2>What's holding your business back?</h2>
+      <p>We don't sell isolated services. Tell us the problem, and we'll guide you to the right transformation path.</p>
+    </div>
+    <div class="challenge-grid reveal">
+      <a href="#contact" class="challenge-card"><span class="txt">Growth has stalled.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">We need to modernise our business.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">We are launching a new company.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">Our operations are inefficient.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">We need an AI strategy.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">We want to become a premium brand.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">We need scalable systems.</span><span class="arrow">→</span></a>
+      <a href="#contact" class="challenge-card"><span class="txt">Leadership isn't aligned.</span><span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS OUTCOMES -->
+<section class="outcomes">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Impact</span>
+      <h2>Business Outcomes We Deliver</h2>
+      <p>Before you learn about our process, here's what it's built to achieve.</p>
+    </div>
+    <div class="outcomes-grid reveal">
+      <div class="outcome-card"><span class="n">01</span><h4>Revenue Growth</h4></div>
+      <div class="outcome-card"><span class="n">02</span><h4>Operational Excellence</h4></div>
+      <div class="outcome-card"><span class="n">03</span><h4>AI Adoption</h4></div>
+      <div class="outcome-card"><span class="n">04</span><h4>Premium Brand Positioning</h4></div>
+      <div class="outcome-card"><span class="n">05</span><h4>Scalable Systems</h4></div>
+      <div class="outcome-card"><span class="n">06</span><h4>Leadership Alignment</h4></div>
+      <div class="outcome-card"><span class="n">07</span><h4>Digital Transformation</h4></div>
+      <div class="outcome-card"><span class="n">08</span><h4>Customer Experience</h4></div>
+      <div class="outcome-card"><span class="n">09</span><h4>Enterprise Value Creation</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="pillars">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"></span>
+      <h2>Three ways we create value</h2>
+    </div>
+    <div class="pillar-grid reveal">
+      <div class="pillar">
+        <span class="tag">Build</span>
+        <h3>Build</h3>
+        <p>Launch and structure new businesses correctly from day one — operating model, first hires, go-to-market — so growth compounds instead of stalling.</p>
+        <a href="#contact" class="link">Learn More</a>
+      </div>
+      <div class="pillar">
+        <span class="tag">Transform</span>
+        <h3>Transform</h3>
+        <p>Modernise and restructure established businesses to improve margin, resilience and competitive position.</p>
+        <a href="#contact" class="link">Learn More</a>
+      </div>
+      <div class="pillar">
+        <span class="tag">Scale</span>
+        <h3>Scale</h3>
+        <p>Give companies the systems, AI and technology to sustain growth without breaking under it.</p>
+        <a href="#contact" class="link">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="framework" id="framework">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"></span>
+      <h2>The Grow Spark Business Transformation Framework™</h2>
+      <p>A disciplined, five-phase path from diagnosis to sustained impact — applied consistently across every engagement.</p>
+    </div>
+    <div class="fw-diagram reveal">
+      <div class="fw-line"></div>
+      <div class="fw-step">
+        <div class="node">01</div>
+        <h4>Discover</h4>
+        <p>Understand the business, the market and the leadership team's ambition.</p>
+      </div>
+      <div class="fw-step">
+        <div class="node">02</div>
+        <h4>Diagnose</h4>
+        <p>Identify the true constraints holding growth and performance back.</p>
+      </div>
+      <div class="fw-step">
+        <div class="node">03</div>
+        <h4>Design</h4>
+        <p>Architect the strategy, systems and operating model to solve them.</p>
+      </div>
+      <div class="fw-step">
+        <div class="node">04</div>
+        <h4>Deploy</h4>
+        <p>Implement the transformation with the team, in the business.</p>
+      </div>
+      <div class="fw-step">
+        <div class="node">05</div>
+        <h4>Drive</h4>
+        <p>Sustain momentum through managed growth and continuous improvement.</p>
+      </div>
+    </div>
+    <p style="text-align:center; color:#9BA1A7; font-size:13.5px; margin-top:64px;">Every phase has defined objectives, deliverables, tools and success metrics — the foundation of the Grow Spark methodology.</p>
+  </div>
+</section>
+
+<!-- ENTERPRISE VALUE STRIP -->
+<section class="ev-strip">
+  <p class="reveal">Every transformation is measured against one standard — does it increase revenue, profit, cash flow, or enterprise value?</p>
+</section>
+
+<!-- WHY GROW SPARK -->
+<section class="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"></span>
+      <h2>Why leadership teams choose to work with us</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><span class="num">01</span><div><h4>Business-First Approach</h4><p>We start with the business problem, not a service catalogue.</p></div></div>
+      <div class="why-card"><span class="num">02</span><div><h4>Independent Recommendations</h4><p>No vendor bias. Our advice serves your outcome, not a platform sale.</p></div></div>
+      <div class="why-card"><span class="num">03</span><div><h4>A Defined Methodology</h4><p>Every engagement runs through the same disciplined framework.</p></div></div>
+      <div class="why-card"><span class="num">04</span><div><h4>Long-Term Partnerships</h4><p>We stay accountable through implementation, not just strategy.</p></div></div>
+      <div class="why-card"><span class="num">05</span><div><h4>Measurable Outcomes</h4><p>Every engagement is scoped against outcomes you can verify.</p></div></div>
+      <div class="why-card"><span class="num">06</span><div><h4>Executive-Level Advisory</h4><p>We work directly with founders and leadership teams, not delegates.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Industries</span>
+      <h2>Sector depth, not generic playbooks</h2>
+      <p>Every industry we serve gets its own transformation opportunities, AI opportunities and relevant case studies.</p>
+    </div>
+    <div class="ind-grid reveal">
+      <a href="#contact" class="ind-card"><span class="n">01</span><h4>Manufacturing</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">02</span><h4>Healthcare</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">03</span><h4>Retail</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">04</span><h4>Education</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">05</span><h4>Professional Services</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">06</span><h4>Technology</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">07</span><h4>Construction</h4></a>
+      <a href="#contact" class="ind-card"><span class="n">08</span><h4>Hospitality</h4></a>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Insights</span>
+      <h2>Research and thinking for leadership teams</h2>
+      <p>Building trust before the first conversation.</p>
+    </div>
+    <div class="ins-categories reveal">
+      <span>CEO Guides</span><span>Business Transformation</span><span>AI Research</span>
+      <span>Industry Reports</span><span>Executive Playbooks</span><span>Whitepapers</span><span>Perspectives</span>
+    </div>
+    <div class="ins-grid reveal">
+      <div class="ins-card">
+        <span class="cat">CEO Guide</span>
+        <h4>Building an AI strategy your leadership team will actually execute</h4>
+        <p>A framework for translating AI ambition into an operating plan.</p>
+      </div>
+      <div class="ins-card">
+        <span class="cat">Industry Report</span>
+        <h4>The state of operational efficiency in Southeast Asian manufacturing</h4>
+        <p>What separates high-performing operators from the rest.</p>
+      </div>
+      <div class="ins-card">
+        <span class="cat">Whitepaper</span>
+        <h4>The Business Transformation Score: a diagnostic for leadership teams</h4>
+        <p>A structured way to assess readiness before committing to change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section class="case">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Case Study</span>
+      <h2>How we work, from problem to outcome</h2>
+    </div>
+    <div class="case-flow reveal">
+      <span class="cf-step">Business Problem</span><span class="cf-arrow">→</span>
+      <span class="cf-step">Assessment</span><span class="cf-arrow">→</span>
+      <span class="cf-step">Transformation Strategy</span><span class="cf-arrow">→</span>
+      <span class="cf-step">Implementation</span><span class="cf-arrow">→</span>
+      <span class="cf-step">Business Outcome</span>
+    </div>
+    <div class="case-box reveal">
+      <div>
+        <span class="eyebrow">Manufacturing · Operations · Illustrative Example</span>
+        <h3>Reducing production downtime through a redesigned operating model</h3>
+        <p>A mid-sized precision manufacturer engaged Grow Spark after growth plateaued despite rising demand. We diagnosed the true constraint, redesigned the operating model, and deployed the change alongside the leadership team — improving output without adding headcount.</p>
+        <div class="case-stats">
+          <div><div class="num">34%</div><div class="label">Downtime reduced</div></div>
+          <div><div class="num">18%</div><div class="label">Output increased</div></div>
+        </div>
+        <p style="font-size:13.5px; color:var(--grey-light); margin-top:24px;">Verified client case studies, testimonials and lessons learned will be published here as engagements complete.</p>
+      </div>
+      <div class="visual">Case Study Visual</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="leadership" id="leadership">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Leadership</span>
+      <h2>Built for founders who refuse to settle for average.</h2>
+      <p>Grow Spark exists because too many good businesses are held back by fragmented advice, disconnected systems and strategy that never gets implemented. We combine strategic clarity with the technology and execution to make transformation real.</p>
+    </div>
+    <div class="lead-grid reveal">
+      <div class="lead-card">
+        <div class="lead-photo">GS</div>
+        <h4>Founder</h4>
+        <span class="role">Business Strategy &amp; Vision</span>
+      </div>
+      <div class="lead-card">
+        <div class="lead-photo">SA</div>
+        <h4>Senior Advisor</h4>
+        <span class="role">Enterprise Transformation</span>
+      </div>
+      <div class="lead-card">
+        <div class="lead-photo">TC</div>
+        <h4>Transformation Consultant</h4>
+        <span class="role">Operating Model Design</span>
+      </div>
+      <div class="lead-card">
+        <div class="lead-photo">TS</div>
+        <h4>Technology Specialist</h4>
+        <span class="role">AI &amp; Systems Implementation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="wrap reveal">
+    <h2>Ready to Transform Your Business?</h2>
+    <p>Speak with a transformation advisor and find out where to start.</p>
+    <div class="cta-row">
+      <a href="#" class="btn-primary">Book Executive Strategy Session</a>
+      <a href="#" class="btn-secondary">Request Business Assessment</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo"><span class="mark"></span>Grow Spark</a>
+        <p>Business Transformation Consulting for ambitious founders and leadership teams.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#leadership">Leadership</a>
+        <a href="#framework">Our Framework</a>
+        <a href="#insights">Insights</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#challenges">Business Challenges</a>
+        <a href="#industries">Industries</a>
+        <a href="#">Case Studies</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@growsparkconsulting.com">hello@growsparkconsulting.com</a>
+        <a href="#">+65 0000 0000</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Grow Spark Consulting. All rights reserved.</p>
+      <p>Singapore</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // mobile nav toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.navlinks');
+  toggle.addEventListener('click', ()=>{
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; padding:24px 32px; border-bottom:1px solid #E4E6E8; gap:20px;';
+  });
+</script>
+
+</body>
+</html>

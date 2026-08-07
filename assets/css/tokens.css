@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/*
+  Grow Spark Consulting — design tokens.
+  Source: Step 1 design-system audit (Part B). Light/dark pairs, never a
+  naive invert. Registered via @theme so Tailwind generates utilities
+  (bg-ink, text-accent, font-display, etc.) directly from these values.
+*/
+@theme {
+  --color-paper: #FAFAF8;
+  --color-paper-raised: #FFFFFF;
+  --color-paper-sunken: #F2F3F1;
+  --color-ink: #14171A;
+  --color-ink-soft: #4A5057;
+  --color-muted: #8A9096;
+  --color-hairline: #E4E6E8;
+  --color-hairline-strong: #D3D6D8;
+  --color-accent: #0B5E45;
+  --color-accent-deep: #083F2F;
+  --color-accent-tint: #E6EFEA;
+  --color-accent-ink: #FFFFFF;
+  --color-accent-bright: #4FCB9B;
+
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --breakpoint-3xl: 1440px;
+  --breakpoint-4xl: 1920px;
+
+  --container-page: 1180px;
+  --container-wide: 1400px;
+  --container-editorial: 720px;
+
+  --radius-card: 12px;
+
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out-strong: cubic-bezier(.76, 0, .24, 1);
+
+  --shadow-card-sm: 0 1px 2px rgba(20, 23, 26, .07);
+  --shadow-card-md: 0 4px 16px rgba(20, 23, 26, .08);
+  --shadow-card-lg: 0 24px 48px -12px rgba(20, 23, 26, .18), 0 8px 16px -4px rgba(20, 23, 26, .08);
+  --shadow-card-xl: 0 40px 80px -20px rgba(20, 23, 26, .24), 0 12px 24px -8px rgba(20, 23, 26, .12);
+}
+
+/*
+  Fluid type scale — plain custom properties (not @theme) since these are
+  consumed by component CSS, not Tailwind utility classes. Every clamp()
+  here is tuned to keep growing smoothly across the full 1280–2560px
+  desktop range instead of hitting its ceiling early and going flat.
+*/
+:root {
+  --fs-hero-headline: 4.6rem;
+  --fs-eyebrow: clamp(0.75rem, 0.7rem + 0.25vw, 0.9375rem);
+  --fs-nav-link: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
+  --fs-nav-cta: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  --fs-logo-primary: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --fs-logo-secondary: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
+}
+
+/* Hero headline font scale — stepped per breakpoint rather than fluid. */
+@media (max-width: 1023px) {
+  :root { --fs-hero-headline: 3.8rem; }
+}
+@media (max-width: 767px) {
+  :root { --fs-hero-headline: 2.2rem; }
+}
+
+/* Responsive container system — content caps at 1280px from 1024px up and
+   holds there (padding grows instead of the column, so very wide screens
+   gain breathing room rather than an ever-wider text measure). Below
+   1024px the container is simply 100% (padding-limited). */
+@media (max-width: 1023px) {
+  :root { --container-page: 100%; }
+}
+@media (min-width: 1024px) {
+  :root { --container-page: 1280px; }
+}
+
+/* Responsive spacing tokens driving .container-site / .section-pad below —
+   container padding and section vertical rhythm each change in exactly
+   one place per breakpoint. */
+:root {
+  --pad-inline: 24px;
+  --space-section: 72px;
+}
+@media (min-width: 768px) {
+  :root { --pad-inline: 32px; --space-section: 96px; }
+}
+@media (min-width: 1024px) {
+  :root { --pad-inline: 48px; --space-section: 120px; }
+}
+@media (min-width: 1440px) {
+  :root { --pad-inline: 64px; }
+}
