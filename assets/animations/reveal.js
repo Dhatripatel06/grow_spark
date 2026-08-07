@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const STAGGER = 0.08;
 const DURATION = 0.7;
-const DISTANCE = 24;
+const DISTANCE = 20;
 
 /**
  * Scroll-reveal for section-level blocks. When a [data-reveal] element has

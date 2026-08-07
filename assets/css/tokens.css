@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /*
   Grow Spark Consulting — design tokens.
@@ -22,17 +21,14 @@
   --color-accent-ink: #FFFFFF;
   --color-accent-bright: #4FCB9B;
 
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   --breakpoint-3xl: 1440px;
   --breakpoint-4xl: 1920px;
 
   --container-page: 1180px;
   --container-wide: 1400px;
-  --container-editorial: 720px;
-
-  --radius-card: 12px;
 
   --ease-standard: cubic-bezier(.4, 0, .2, 1);
   --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
@@ -51,46 +47,10 @@
   desktop range instead of hitting its ceiling early and going flat.
 */
 :root {
-  --fs-hero-headline: 4.6rem;
+  --fs-hero-headline: clamp(2.5rem, 2rem + 2.5vw, 6rem);
   --fs-eyebrow: clamp(0.75rem, 0.7rem + 0.25vw, 0.9375rem);
   --fs-nav-link: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
   --fs-nav-cta: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
   --fs-logo-primary: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
   --fs-logo-secondary: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
-}
-
-/* Hero headline font scale — stepped per breakpoint rather than fluid. */
-@media (max-width: 1023px) {
-  :root { --fs-hero-headline: 3.8rem; }
-}
-@media (max-width: 767px) {
-  :root { --fs-hero-headline: 2.2rem; }
-}
-
-/* Responsive container system — content caps at 1280px from 1024px up and
-   holds there (padding grows instead of the column, so very wide screens
-   gain breathing room rather than an ever-wider text measure). Below
-   1024px the container is simply 100% (padding-limited). */
-@media (max-width: 1023px) {
-  :root { --container-page: 100%; }
-}
-@media (min-width: 1024px) {
-  :root { --container-page: 1280px; }
-}
-
-/* Responsive spacing tokens driving .container-site / .section-pad below —
-   container padding and section vertical rhythm each change in exactly
-   one place per breakpoint. */
-:root {
-  --pad-inline: 24px;
-  --space-section: 72px;
-}
-@media (min-width: 768px) {
-  :root { --pad-inline: 32px; --space-section: 96px; }
-}
-@media (min-width: 1024px) {
-  :root { --pad-inline: 48px; --space-section: 120px; }
-}
-@media (min-width: 1440px) {
-  :root { --pad-inline: 64px; }
 }
