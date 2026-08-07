@@ -141,11 +141,15 @@ function initMobileDrawer() {
   drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
 }
 
+// Directory-style routes (/services/) rather than filenames, so comparison
+// is by normalized pathname, not by trailing path segment.
+const normalizePath = (pathname) => pathname.replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
+
 function markCurrentPage() {
-  const currentFile = location.pathname.split('/').pop() || 'index.html';
+  const currentPath = normalizePath(location.pathname);
   document.querySelectorAll('.site-nav__link, .drawer-link').forEach((link) => {
-    const linkFile = new URL(link.href, location.href).pathname.split('/').pop() || 'index.html';
-    link.classList.toggle('is-current', linkFile === currentFile);
+    const linkPath = normalizePath(new URL(link.href, location.href).pathname);
+    link.classList.toggle('is-current', linkPath === currentPath);
   });
 }
 

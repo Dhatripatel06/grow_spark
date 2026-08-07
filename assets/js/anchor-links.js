@@ -4,7 +4,7 @@ const HEADER_OFFSET = 96;
  * Same-page hash links (mega menu, challenge cards, footer, etc.) need to
  * go through Lenis rather than the browser's native jump — otherwise
  * Lenis's own RAF loop fights the native scroll position on every frame.
- * Cross-page links (e.g. "contact.html#foo" from index.html) are left
+ * Cross-page links (e.g. "/contact/#foo" from the homepage) are left
  * alone so the browser navigates normally.
  */
 export function initAnchorLinks(lenis) {

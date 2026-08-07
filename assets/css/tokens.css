@@ -38,6 +38,22 @@
   --shadow-card-md: 0 4px 16px rgba(20, 23, 26, .08);
   --shadow-card-lg: 0 24px 48px -12px rgba(20, 23, 26, .18), 0 8px 16px -4px rgba(20, 23, 26, .08);
   --shadow-card-xl: 0 40px 80px -20px rgba(20, 23, 26, .24), 0 12px 24px -8px rgba(20, 23, 26, .12);
+
+  /*
+    Sub-page system additions (docs/subpage-system-spec.md §4). Named to
+    never collide with Tailwind's own default scale keys (sm/md/lg/full for
+    radius, sm/md for blur) — those defaults stay untouched everywhere they're
+    already used (e.g. the nav mega-panel's `rounded-md`). These are new,
+    additive utilities only: rounded-tag, rounded-card, rounded-feature,
+    rounded-pill, blur-nav, blur-overlay.
+  */
+  --radius-tag: 6px;
+  --radius-card: 12px;
+  --radius-feature: 20px;
+  --radius-pill: 999px;
+
+  --blur-nav: 8px;
+  --blur-overlay: 16px;
 }
 
 /*
@@ -53,4 +69,29 @@
   --fs-nav-cta: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
   --fs-logo-primary: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
   --fs-logo-secondary: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
+
+  /* Sub-page system additions (docs/subpage-system-spec.md §4) — plain
+     custom properties, not @theme, since these are consumed by component
+     CSS/arbitrary values rather than generating new Tailwind utilities. */
+  --fs-section-heading: clamp(1.75rem, 1.4rem + 1.6vw, 3rem);
+  --fs-card-title: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fs-body: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+  --fs-stat-figure: clamp(2rem, 1.6rem + 1.8vw, 3.5rem);
+
+  --space-section-y-mobile: 6rem;
+  --space-section-y-desktop: 8rem;
+  --space-section-y-tight: 4rem;
+
+  --border-hairline: 1px;
+  --border-emphasis: 1.5px;
+
+  --opacity-disabled: 0.4;
+  --opacity-muted-media: 0.85;
+  --opacity-scrim: 0.5;
+
+  --z-base: 0;
+  --z-sticky-subnav: 30;
+  --z-header: 50;
+  --z-drawer: 60;
+  --z-skip-link: 200;
 }

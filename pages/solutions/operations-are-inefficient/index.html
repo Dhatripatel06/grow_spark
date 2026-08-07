@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modernise Your Business — Grow Spark Consulting</title>
+<title>Operations Are Inefficient — Grow Spark Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,13 +57,13 @@
 
   /* ---------- Hero ---------- */
   .hero{padding:110px 0 90px; border-bottom:1px solid var(--hairline); text-align:center;}
-  .hero .wrap{max-width:840px;}
+  .hero .wrap{max-width:820px;}
   .eyebrow{font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--emerald); margin-bottom:22px; display:block;}
-  .hero h1{font-size:clamp(30px,5vw,50px); line-height:1.16; margin-bottom:28px;}
+  .hero h1{font-size:clamp(32px,5.4vw,56px); line-height:1.14; margin-bottom:16px;}
+  .hero .sub{font-size:18px; color:var(--charcoal-soft); font-weight:500; margin-bottom:30px;}
   .hero .lines p{font-size:16px; color:var(--grey); line-height:1.55; margin-bottom:2px;}
   .hero .lines{margin-bottom:26px;}
-  .hero .lines p.strong{font-family:'Manrope'; font-weight:700; color:var(--charcoal); font-size:17px; margin-top:8px;}
-  .hero .lede{font-size:17.5px; color:var(--charcoal-soft); font-weight:500; max-width:660px; margin:0 auto 40px; line-height:1.6;}
+  .hero .lede{font-size:17.5px; color:var(--charcoal-soft); font-weight:500; max-width:640px; margin:0 auto 40px; line-height:1.6;}
 
   /* ---------- Section heading ---------- */
   .section-head{max-width:680px; margin:0 auto 52px; text-align:center;}
@@ -78,25 +78,24 @@
   .symptom-item .mark2{color:var(--emerald); font-family:'Manrope'; font-weight:800; font-size:15px; flex-shrink:0; margin-top:1px;}
   .symptom-item p{font-size:15px; color:var(--charcoal-soft); font-weight:500;}
   .symptoms-note{max-width:640px; margin:0 auto; text-align:center; color:var(--grey); font-size:15.5px;}
-  .symptoms-note strong{color:var(--charcoal); display:block; font-family:'Manrope'; font-weight:700; font-size:17px; margin-top:6px;}
+  .symptoms-note strong{color:var(--charcoal);}
 
-  /* ---------- Not a tech project (Section 3) ---------- */
-  .reframe{padding:110px 0;}
-  .reframe-intro{max-width:640px; margin:0 auto 40px; text-align:center; color:var(--grey); font-size:16.5px;}
-  .reframe-intro p{margin-bottom:4px;}
-  .reframe-chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:36px;}
-  .reframe-chips span{font-size:13.5px; font-weight:600; color:var(--charcoal-soft); border:1px solid var(--hairline); padding:10px 18px; border-radius:20px; background:var(--panel);}
-  .reframe-close{text-align:center; font-family:'Manrope'; font-weight:700; font-size:18px; color:var(--charcoal); max-width:640px; margin:0 auto;}
+  /* ---------- Hidden cost (Section 3) ---------- */
+  .hidden-cost{padding:110px 0;}
+  .hc-intro{max-width:640px; margin:0 auto 48px; text-align:center; color:var(--grey); font-size:16.5px;}
+  .hc-intro p{margin-bottom:4px;}
+  .hc-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; max-width:900px; margin:0 auto;}
+  .hc-card{border:1px solid var(--hairline); padding:20px 24px; font-size:15px; color:var(--charcoal-soft); font-weight:500;}
+  .hc-close{text-align:center; font-family:'Manrope'; font-weight:700; font-size:17px; color:var(--charcoal); margin-top:40px;}
 
-  /* ---------- Cost of standing still (Section 4) ---------- */
+  /* ---------- Cost of doing nothing (Section 4) ---------- */
   .cost{padding:100px 0; background:var(--charcoal); color:var(--white);}
   .cost .section-head h2, .cost .section-head p{color:var(--white);}
   .cost .section-head p{color:#B9BEC3;}
   .cost .eyebrow{color:#4FCB9B;}
   .cost-flow{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:44px;}
   .cost-flow span{font-family:'Manrope'; font-weight:600; font-size:13.5px; padding:10px 18px; border:1px solid rgba(255,255,255,0.18); border-radius:20px; color:#D6D9DC;}
-  .cost-line{text-align:center; font-family:'Manrope'; font-weight:700; font-size:clamp(20px,3vw,28px); max-width:600px; margin:0 auto; color:var(--white); line-height:1.4;}
-  .cost-line .accent{color:#4FCB9B;}
+  .cost-line{text-align:center; font-family:'Manrope'; font-weight:700; font-size:clamp(18px,2.6vw,24px); max-width:680px; margin:0 auto; color:var(--white); line-height:1.5;}
 
   /* ---------- Assessment (Section 5) ---------- */
   .approach{padding:110px 0;}
@@ -168,7 +167,7 @@
   @media (max-width:900px){
     .navlinks{display:none;}
     .nav-toggle{display:block;}
-    .symptom-grid, .assess-grid, .outcomes-grid, .who-grid, .why-grid{grid-template-columns:1fr;}
+    .symptom-grid, .hc-grid, .assess-grid, .outcomes-grid, .who-grid, .why-grid{grid-template-columns:1fr;}
     .fw-diagram{flex-direction:column; gap:36px; align-items:flex-start;}
     .fw-line{display:none;}
     .fw-step{text-align:left; display:flex; align-items:center; gap:18px; max-width:none;}
@@ -181,15 +180,15 @@
 
 <header>
   <nav class="nav">
-    <a href="index.html" class="logo"><span class="mark"></span>Grow Spark</a>
+    <a href="/" class="logo"><span class="mark"></span>Grow Spark</a>
     <div class="navlinks">
-      <a href="index.html#home">Home</a>
-      <a href="index.html#challenges">Business Challenges</a>
-      <a href="index.html#framework">Our Framework</a>
-      <a href="index.html#industries">Industries</a>
-      <a href="index.html#insights">Insights</a>
-      <a href="index.html#leadership">Leadership</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="/#home">Home</a>
+      <a href="/#challenges">Business Challenges</a>
+      <a href="/#framework">Our Framework</a>
+      <a href="/#industries">Industries</a>
+      <a href="/#insights">Insights</a>
+      <a href="/#leadership">Leadership</a>
+      <a href="/#contact">Contact</a>
     </div>
     <a href="#assessment" class="nav-cta">Request Assessment</a>
     <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -199,16 +198,18 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="wrap reveal">
-    <span class="eyebrow">Modernise Your Business</span>
-    <h1>The Future Won't Wait. Modernise Your Business Before Your Competitors Do.</h1>
+    <span class="eyebrow">Operations Are Inefficient</span>
+    <h1>Complexity Is Costing You More Than You Think.</h1>
+    <p class="sub">Every inefficient process is reducing your profitability.</p>
     <div class="lines">
-      <p>Markets are changing faster than ever. Customers expect seamless digital experiences.</p>
-      <p>Employees demand better tools. Data has become a competitive advantage.</p>
-      <p class="strong">Technology is no longer a support function. It's the foundation of modern business.</p>
+      <p>As businesses grow, complexity grows with them.</p>
+      <p>Processes become slower. Teams become disconnected.</p>
+      <p>Manual work increases. Decisions take longer.</p>
+      <p>Costs rise. Productivity falls.</p>
     </div>
-    <p class="lede">Yet many organisations continue operating with outdated processes, disconnected systems and legacy thinking. At Grow Spark Consulting, we help businesses modernise their operations, customer experience and business model to compete confidently in a digital-first world.</p>
+    <p class="lede">Most businesses don't realise that operational inefficiency quietly becomes one of the biggest barriers to growth. At Grow Spark Consulting, we help leadership teams redesign operations, streamline processes and build scalable operating systems that improve efficiency, profitability and long-term growth.</p>
     <div class="cta-row">
-      <a href="#assessment" class="btn-primary">Request a Digital Transformation Assessment™</a>
+      <a href="#assessment" class="btn-primary">Request an Operational Excellence Assessment™</a>
       <a href="#framework" class="btn-secondary">Explore Our Transformation Framework</a>
     </div>
   </div>
@@ -218,57 +219,64 @@
 <section class="symptoms">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">A Quick Check</span>
-      <h2>Is Your Business Ready For The Next Decade?</h2>
+      <span class="eyebrow">Sound Familiar?</span>
+      <h2>Does This Sound Familiar?</h2>
     </div>
     <div class="symptom-grid reveal">
-      <div class="symptom-item"><span class="mark2">—</span><p>Your systems don't communicate with each other.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Critical decisions rely on spreadsheets.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Customer information is scattered across departments.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Your employees spend too much time on manual tasks.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Customers expect a better digital experience.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Competitors are moving faster.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Innovation feels slow.</p></div>
-      <div class="symptom-item"><span class="mark2">—</span><p>Leadership knows change is necessary — but isn't sure where to begin.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Your team spends hours on repetitive manual work.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Different departments work in silos.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Information is difficult to find.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Projects are constantly delayed.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Employees perform the same task in different ways.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Approvals take too long.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Management lacks visibility into business performance.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Customer issues take too long to resolve.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Operational costs continue to increase.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Growth creates more problems instead of more opportunities.</p></div>
     </div>
-    <p class="symptoms-note reveal">If these challenges sound familiar, your business doesn't simply need new software.<strong>It needs a modern operating model.</strong></p>
+    <p class="symptoms-note reveal"><strong>If these challenges feel familiar, your business may have outgrown its operating model.</strong></p>
   </div>
 </section>
 
-<!-- SECTION 3: NOT A TECH PROJECT -->
-<section class="reframe" id="whats-holding-you-back">
+<!-- SECTION 3: HIDDEN COST -->
+<section class="hidden-cost">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Reframing The Problem</span>
-      <h2>Digital Transformation Is Not A Technology Project.</h2>
+      <span class="eyebrow">What's Really Happening</span>
+      <h2>The Hidden Cost Of Operational Complexity</h2>
     </div>
-    <div class="reframe-intro reveal">
-      <p>Many businesses assume digital transformation means buying new software. It doesn't.</p>
-      <p>Technology alone doesn't create transformation. Real transformation begins with rethinking how the business creates value. That includes:</p>
+    <div class="hc-intro reveal">
+      <p>Operational inefficiency doesn't always appear on a financial statement.</p>
+      <p>Instead, it quietly affects every part of the business.</p>
     </div>
-    <div class="reframe-chips reveal">
-      <span>Business Processes</span><span>Customer Experience</span><span>Decision Making</span>
-      <span>Leadership</span><span>Culture</span><span>Technology</span><span>Data</span><span>People</span>
+    <div class="hc-grid reveal">
+      <div class="hc-card">Employees spend more time on administration than value creation.</div>
+      <div class="hc-card">Leaders make decisions with incomplete information.</div>
+      <div class="hc-card">Customers experience inconsistent service.</div>
+      <div class="hc-card">Processes become dependent on individuals instead of systems.</div>
+      <div class="hc-card">The organisation becomes slower while competitors become faster.</div>
     </div>
-    <p class="reframe-close reveal">The organisations that modernise all of these outperform those that only modernise systems.</p>
+    <p class="hc-close reveal">Over time, these small inefficiencies compound into significant financial losses.</p>
   </div>
 </section>
 
-<!-- SECTION 4: COST OF STANDING STILL -->
+<!-- SECTION 4: COST OF DOING NOTHING -->
 <section class="cost">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">The Cost Of Standing Still</span>
-      <h2>Every Year, The Gap Gets Wider</h2>
+      <span class="eyebrow">The Cost of Doing Nothing</span>
+      <h2>Complexity Accumulates Gradually</h2>
+      <p>Businesses rarely become inefficient overnight.</p>
     </div>
     <div class="cost-flow reveal">
-      <span>Competitors improve</span>
-      <span>Customer expectations increase</span>
-      <span>Technology evolves</span>
-      <span>Operating costs rise</span>
-      <span>Talent expects better systems</span>
+      <span>More manual work</span>
+      <span>Higher operating costs</span>
+      <span>Longer delivery times</span>
+      <span>Employee frustration</span>
+      <span>Lower customer satisfaction</span>
+      <span>Reduced profitability</span>
     </div>
-    <p class="cost-line reveal">The longer transformation is delayed, the more expensive catching up becomes. The greatest risk isn't transformation. <span class="accent">It's irrelevance.</span></p>
+    <p class="cost-line reveal">The longer inefficiencies remain unresolved, the harder they become to fix.</p>
   </div>
 </section>
 
@@ -277,22 +285,22 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Our Approach</span>
-      <h2>Our Digital Transformation Assessment™</h2>
-      <p>Every engagement begins by understanding where your organisation is today. We evaluate:</p>
+      <h2>Our Operational Excellence Assessment™</h2>
+      <p>Every engagement begins by understanding how your business operates today. We assess:</p>
     </div>
     <div class="assess-grid reveal">
-      <div class="assess-card"><span>Business Model</span></div>
-      <div class="assess-card"><span>Customer Journey</span></div>
+      <div class="assess-card"><span>Business Processes</span></div>
       <div class="assess-card"><span>Operating Model</span></div>
-      <div class="assess-card"><span>Technology Landscape</span></div>
-      <div class="assess-card"><span>Digital Maturity</span></div>
-      <div class="assess-card"><span>Leadership Alignment</span></div>
-      <div class="assess-card"><span>Process Efficiency</span></div>
-      <div class="assess-card"><span>Data Strategy</span></div>
-      <div class="assess-card"><span>Employee Experience</span></div>
-      <div class="assess-card"><span>Growth Readiness</span></div>
+      <div class="assess-card"><span>Department Workflows</span></div>
+      <div class="assess-card"><span>Leadership Structure</span></div>
+      <div class="assess-card"><span>Technology Stack</span></div>
+      <div class="assess-card"><span>Customer Journey</span></div>
+      <div class="assess-card"><span>Performance Metrics</span></div>
+      <div class="assess-card"><span>Reporting Systems</span></div>
+      <div class="assess-card"><span>Decision-Making Processes</span></div>
+      <div class="assess-card"><span>Operational Risks</span></div>
     </div>
-    <p style="text-align:center; color:var(--grey); font-size:15px; margin-top:36px;">The outcome is a practical roadmap that prioritises initiatives based on business value — not technology trends.</p>
+    <p style="text-align:center; color:var(--grey); font-size:15px; margin-top:36px;">The outcome is a practical roadmap that identifies the highest-impact improvements.</p>
   </div>
 </section>
 
@@ -301,15 +309,15 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Our Methodology</span>
-      <h2>The Grow Spark Digital Transformation Framework™</h2>
+      <h2>The Grow Spark Operational Transformation Framework™</h2>
     </div>
     <div class="fw-diagram reveal">
       <div class="fw-line"></div>
-      <div class="fw-step"><div class="node">01</div><h4>Understand</h4><p>Gain a complete view of the organisation, its goals and current maturity.</p></div>
-      <div class="fw-step"><div class="node">02</div><h4>Assess</h4><p>Identify digital gaps, operational constraints and opportunities for improvement.</p></div>
-      <div class="fw-step"><div class="node">03</div><h4>Reimagine</h4><p>Design a future-ready business model, operating structure and customer experience.</p></div>
-      <div class="fw-step"><div class="node">04</div><h4>Transform</h4><p>Guide implementation across people, processes and technology.</p></div>
-      <div class="fw-step"><div class="node">05</div><h4>Sustain</h4><p>Measure outcomes, optimise continuously and build long-term competitive advantage.</p></div>
+      <div class="fw-step"><div class="node">01</div><h4>Discover</h4><p>Understand how the organisation currently operates.</p></div>
+      <div class="fw-step"><div class="node">02</div><h4>Diagnose</h4><p>Identify bottlenecks, delays and operational constraints.</p></div>
+      <div class="fw-step"><div class="node">03</div><h4>Design</h4><p>Redesign workflows, systems and governance.</p></div>
+      <div class="fw-step"><div class="node">04</div><h4>Deploy</h4><p>Implement improvements alongside your leadership team.</p></div>
+      <div class="fw-step"><div class="node">05</div><h4>Drive</h4><p>Measure performance, optimise continuously and sustain operational excellence.</p></div>
     </div>
   </div>
 </section>
@@ -319,18 +327,18 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Business Outcomes</span>
-      <h2>What Modernisation Delivers</h2>
+      <h2>What Operational Excellence Delivers</h2>
     </div>
     <div class="outcomes-grid reveal">
-      <div class="outcome-card"><span class="n">01</span><h4>Modern Operating Models</h4></div>
-      <div class="outcome-card"><span class="n">02</span><h4>Improved Customer Experiences</h4></div>
-      <div class="outcome-card"><span class="n">03</span><h4>Faster Decision-Making</h4></div>
-      <div class="outcome-card"><span class="n">04</span><h4>Higher Operational Efficiency</h4></div>
-      <div class="outcome-card"><span class="n">05</span><h4>Better Collaboration Across Teams</h4></div>
-      <div class="outcome-card"><span class="n">06</span><h4>Scalable Digital Systems</h4></div>
-      <div class="outcome-card"><span class="n">07</span><h4>Greater Business Agility</h4></div>
-      <div class="outcome-card"><span class="n">08</span><h4>Stronger Competitive Positioning</h4></div>
-      <div class="outcome-card"><span class="n">09</span><h4>Long-Term Enterprise Value</h4></div>
+      <div class="outcome-card"><span class="n">01</span><h4>Reduced Operating Costs</h4></div>
+      <div class="outcome-card"><span class="n">02</span><h4>Faster Decision-Making</h4></div>
+      <div class="outcome-card"><span class="n">03</span><h4>Improved Employee Productivity</h4></div>
+      <div class="outcome-card"><span class="n">04</span><h4>Higher Customer Satisfaction</h4></div>
+      <div class="outcome-card"><span class="n">05</span><h4>Better Cross-Functional Collaboration</h4></div>
+      <div class="outcome-card"><span class="n">06</span><h4>Scalable Operating Systems</h4></div>
+      <div class="outcome-card"><span class="n">07</span><h4>Improved Visibility Through Dashboards &amp; KPIs</h4></div>
+      <div class="outcome-card"><span class="n">08</span><h4>Stronger Profitability</h4></div>
+      <div class="outcome-card"><span class="n">09</span><h4>A Business Prepared For Sustainable Growth</h4></div>
     </div>
   </div>
 </section>
@@ -340,17 +348,17 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Who We Work With</span>
-      <h2>Built For Organisations Ready To Modernise</h2>
+      <h2>Across Industries, Same Root Problem</h2>
     </div>
     <div class="who-grid reveal">
-      <div class="who-item">Established businesses</div>
-      <div class="who-item">Family-owned companies</div>
-      <div class="who-item">Manufacturing organisations</div>
-      <div class="who-item">Healthcare providers</div>
+      <div class="who-item">Manufacturing companies</div>
+      <div class="who-item">Healthcare organisations</div>
       <div class="who-item">Retail businesses</div>
       <div class="who-item">Professional services</div>
-      <div class="who-item">Education institutions</div>
-      <div class="who-item">Mid-market companies preparing for their next stage of growth</div>
+      <div class="who-item">Education providers</div>
+      <div class="who-item">Construction firms</div>
+      <div class="who-item">Founder-led businesses</div>
+      <div class="who-item">Growing mid-market companies</div>
     </div>
   </div>
 </section>
@@ -363,13 +371,12 @@
       <h2>Why Grow Spark?</h2>
     </div>
     <div class="why-grid reveal">
-      <div class="why-card"><span class="num">01</span><p>Business-first transformation.</p></div>
-      <div class="why-card"><span class="num">02</span><p>Technology aligned with strategy.</p></div>
-      <div class="why-card"><span class="num">03</span><p>Executive-level advisory.</p></div>
-      <div class="why-card"><span class="num">04</span><p>Independent recommendations.</p></div>
-      <div class="why-card"><span class="num">05</span><p>Long-term implementation support.</p></div>
-      <div class="why-card"><span class="num">06</span><p>Focus on measurable business outcomes.</p></div>
-      <div class="why-card"><span class="num">07</span><p>We modernise businesses — not just systems.</p></div>
+      <div class="why-card"><span class="num">01</span><p>We improve businesses before recommending technology.</p></div>
+      <div class="why-card"><span class="num">02</span><p>We simplify operations instead of adding complexity.</p></div>
+      <div class="why-card"><span class="num">03</span><p>We design systems that scale.</p></div>
+      <div class="why-card"><span class="num">04</span><p>We focus on measurable business outcomes.</p></div>
+      <div class="why-card"><span class="num">05</span><p>We work alongside leadership teams during implementation.</p></div>
+      <div class="why-card"><span class="num">06</span><p>We create lasting operational improvements — not temporary fixes.</p></div>
     </div>
   </div>
 </section>
@@ -383,20 +390,20 @@
     </div>
     <div class="faq-list reveal">
       <div class="faq-item">
-        <button class="faq-q"><span>Is digital transformation only for large enterprises?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>No. Growing businesses often benefit the most because modern systems and processes create a stronger foundation for future growth.</p></div>
+        <button class="faq-q"><span>Do you only recommend process improvements?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Where appropriate, we redesign organisational structures, reporting systems, technology and governance as part of a complete operational transformation.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span>Will we need to replace all of our existing systems?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Not necessarily. We evaluate your current environment and recommend improvements only where they create measurable business value.</p></div>
+        <button class="faq-q"><span>Will we need new software?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Not necessarily. We first optimise existing processes before recommending new technology.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span>How long does digital transformation take?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Every organisation is different. Most programmes are delivered in phases, allowing businesses to realise value while continuing normal operations.</p></div>
+        <button class="faq-q"><span>Can operational improvements reduce costs?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Better processes often reduce waste, improve productivity and increase profitability without requiring major investments.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span>Do you also implement technology?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Grow Spark leads the business transformation strategy and programme governance. Where specialised technology implementation is required, we work with the appropriate delivery teams to ensure successful execution.</p></div>
+        <button class="faq-q"><span>Do you support implementation?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. We work closely with leadership teams to ensure improvements are successfully implemented and adopted.</p></div>
       </div>
     </div>
   </div>
@@ -405,11 +412,11 @@
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="wrap reveal">
-    <h2>Tomorrow's Market Leaders Are Building Today.</h2>
-    <p>Transformation doesn't begin with technology. It begins with a decision. Let's build a business that's ready for the future.</p>
+    <h2>Better Operations Build Better Businesses.</h2>
+    <p>Operational excellence is not about working harder. It's about designing a business that works better.</p>
     <div class="cta-row">
-      <a href="#assessment" class="btn-primary">Request Your Digital Transformation Assessment™</a>
-      <a href="index.html#contact" class="btn-secondary">Book An Executive Strategy Session</a>
+      <a href="#assessment" class="btn-primary">Request Your Operational Excellence Assessment™</a>
+      <a href="/#contact" class="btn-secondary">Book An Executive Strategy Session</a>
     </div>
   </div>
 </section>
@@ -417,15 +424,15 @@
 <footer>
   <div class="wrap">
     <p class="statement">
-      <strong>Grow Spark Consulting helps leadership teams modernise businesses through strategy, operating model redesign and digital transformation.</strong>
-      We don't simply digitise businesses. We help organisations become future-ready.
+      <strong>Grow Spark Consulting helps businesses eliminate operational complexity and build systems that support sustainable growth.</strong>
+      We don't optimise individual processes. We transform how businesses operate.
     </p>
     <div class="foot-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#framework">Framework</a>
-      <a href="index.html#industries">Industries</a>
-      <a href="index.html#leadership">Leadership</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="/">Home</a>
+      <a href="/#framework">Framework</a>
+      <a href="/#industries">Industries</a>
+      <a href="/#leadership">Leadership</a>
+      <a href="/#contact">Contact</a>
     </div>
     <p class="copyright">© 2026 Grow Spark Consulting. All rights reserved.</p>
   </div>

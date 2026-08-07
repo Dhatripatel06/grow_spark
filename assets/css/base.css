@@ -235,18 +235,21 @@
   body:not([data-hero-theme='dark']) #site-header .logo-dot {
     background: var(--color-accent);
   }
-  /* Footer sits on paper, never on video — always the darker, readable dot. */
+  /* Footer is always a dark band (never on paper), so its dot always uses
+     the on-dark bright accent — the same pairing the dark hero nav uses. */
   footer .logo-dot {
-    background: var(--color-accent);
+    background: var(--color-accent-bright);
   }
 
   /* Footer links: same underline-draw micro-interaction as the primary nav,
      so hover quality feels consistent site-wide instead of footer being a
-     plain color-swap while nav gets the richer treatment. */
+     plain color-swap while nav gets the richer treatment. Colors are the
+     on-dark pair (footer is always a dark band), matching the muted-white/
+     accent-bright convention used by every other dark section. */
   .footer-link {
     position: relative;
     display: inline-block;
-    color: var(--color-ink-soft);
+    color: rgba(255, 255, 255, 0.62);
     font-size: 14.5px;
     transition: color .2s var(--ease-standard);
     width: fit-content;
@@ -263,7 +266,7 @@
     transition: right .3s var(--ease-out-expo), opacity .3s var(--ease-standard);
   }
   .footer-link:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-bright);
   }
   .footer-link:hover::after {
     right: 0;
@@ -506,6 +509,38 @@
   /* Small pill labels (case-study process flow). */
   .pill-label {
     font-size: clamp(0.84rem, 0.8rem + 0.15vw, 0.875rem);
+  }
+
+  /* ---------- Interior-page hero (static, non-video pages) ----------
+     Reusable across Services/Solutions/Case Studies/About/Contact so every
+     page opens on the same fluid-typography treatment as Home, without
+     inheriting Home's video-hero-specific sizing (.hero-headline is much
+     larger and tuned for a full-bleed video background). */
+  .page-hero-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.375rem, 1.7rem + 2.5vw, 3.75rem);
+  }
+
+  /* Short "building statement" lines under a hero heading — semibold,
+     muted-to-ink progression (see services-hero, exec-summary). */
+  .lede-statement {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.1875rem);
+  }
+
+  /* Sub-section heading — one step down from .section-head h2, used where
+     a heading sits in a constrained column rather than full-width centered
+     (services category headers, the services-process heading). */
+  .subsection-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    font-size: clamp(1.625rem, 1.4rem + 1vw, 2rem);
   }
 
   .grid-hairline {
