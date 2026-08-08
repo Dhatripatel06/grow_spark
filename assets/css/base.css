@@ -372,16 +372,28 @@
 
   /* Cinematic letterboxing for centered text: dark top (nav legibility) and
      bottom (controls legibility) framing a gently-darkened middle band —
-     even enough that the footage still reads, without crushing contrast. */
+     even enough that the footage still reads, without crushing contrast.
+     Layered with a soft radial vignette so the frame's edges recede and
+     the eye settles on the centered text — a lens-like falloff rather than
+     a flat rectangle of darkening. */
   .hero-scrim {
-    background-image: linear-gradient(
-      180deg,
-      rgba(9, 11, 10, .58) 0%,
-      rgba(9, 11, 10, .22) 22%,
-      rgba(9, 11, 10, .3) 50%,
-      rgba(9, 11, 10, .22) 78%,
-      rgba(9, 11, 10, .6) 100%
-    );
+    background-image:
+      radial-gradient(120% 85% at 50% 50%, rgba(9, 11, 10, 0) 55%, rgba(9, 11, 10, .32) 100%),
+      linear-gradient(
+        180deg,
+        rgba(9, 11, 10, .58) 0%,
+        rgba(9, 11, 10, .22) 22%,
+        rgba(9, 11, 10, .3) 50%,
+        rgba(9, 11, 10, .22) 78%,
+        rgba(9, 11, 10, .6) 100%
+      );
+  }
+
+  /* Unifies the hero videos toward one restrained, cinematic grade —
+     independent of each clip's own native color/exposure — rather than
+     leaving raw, unedited footage tones directly on screen. */
+  [data-hero-video] {
+    filter: saturate(0.92) contrast(1.05);
   }
 
   .hero-eyebrow {
@@ -404,7 +416,7 @@
     font-weight: 300;
     color: #fff;
     font-size: var(--fs-hero-headline);
-    line-height: 1.2;
+    line-height: 1.14;
     letter-spacing: -0.005em;
     text-wrap: balance;
     max-width: 19ch;
@@ -416,12 +428,14 @@
     color: #fff;
     border: 1.5px solid rgba(255, 255, 255, 0.55);
     padding: 18px 38px;
+    transition: transform .25s var(--ease-out-expo), background-color .2s var(--ease-standard), color .2s var(--ease-standard), border-color .2s var(--ease-standard), box-shadow .3s var(--ease-standard);
   }
   .btn-hero:hover {
     background: #fff;
     color: var(--color-ink);
     border-color: #fff;
     transform: translateY(-2px);
+    box-shadow: 0 12px 32px -8px rgba(255, 255, 255, 0.35);
   }
 
   .hero-play-toggle {

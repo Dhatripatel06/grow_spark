@@ -1,8 +1,18 @@
+<!--
+  Media integration point (documentation only — no wiring below has changed).
+  Production replacement videos for the 4 slides in this section are spec'd
+  and tracked in public/grow-assets/hero-videos.json (status: pending for all).
+  Source of truth: audit/home-asset-prompts.md, audit/video-treatment-spec.md,
+  audit/video-qa-checklist.md, audit/color-grade-spec.md. Do not swap the
+  `src`/`data-video-src` values below until the corresponding manifest item's
+  status is "ready" and it has passed audit/video-qa-checklist.md.
+-->
 <section id="hero" class="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-ink" aria-label="Introduction">
   <div class="swiper hero-swiper h-full" data-hero-swiper role="region" aria-roledescription="carousel" aria-label="Grow Spark Consulting highlights">
     <div class="swiper-wrapper h-full">
 
       <div class="swiper-slide relative" role="group" aria-roledescription="slide" aria-label="1 of 4" data-video-src="/videos/hero-01.mp4">
+        <!-- Integration point: manifest id HOME-V01 (public/grow-assets/hero-videos.json), poster id HOME-P01 (public/grow-assets/hero-posters.json) -->
         <video class="absolute inset-0 w-full h-full object-cover" data-hero-video src="/videos/hero-01.mp4" preload="auto" muted loop playsinline aria-hidden="true"></video>
         <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
         <div class="relative z-10 h-full flex items-center justify-center">
@@ -17,6 +27,7 @@
       </div>
 
       <div class="swiper-slide relative" role="group" aria-roledescription="slide" aria-label="2 of 4" data-video-src="/videos/hero-02.mp4">
+        <!-- Integration point: manifest id HOME-V02 (public/grow-assets/hero-videos.json), poster id HOME-P02 (public/grow-assets/hero-posters.json) -->
         <video class="absolute inset-0 w-full h-full object-cover" data-hero-video preload="none" muted loop playsinline aria-hidden="true"></video>
         <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
         <div class="relative z-10 h-full flex items-center justify-center">
@@ -31,6 +42,7 @@
       </div>
 
       <div class="swiper-slide relative" role="group" aria-roledescription="slide" aria-label="3 of 4" data-video-src="/videos/hero-03.mp4">
+        <!-- Integration point: manifest id HOME-V03 (public/grow-assets/hero-videos.json), poster id HOME-P03 (public/grow-assets/hero-posters.json) -->
         <video class="absolute inset-0 w-full h-full object-cover" data-hero-video preload="none" muted loop playsinline aria-hidden="true"></video>
         <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
         <div class="relative z-10 h-full flex items-center justify-center">
@@ -45,6 +57,7 @@
       </div>
 
       <div class="swiper-slide relative" role="group" aria-roledescription="slide" aria-label="4 of 4" data-video-src="/videos/hero-04.mp4">
+        <!-- Integration point: manifest id HOME-V04 (public/grow-assets/hero-videos.json), poster id HOME-P04 (public/grow-assets/hero-posters.json) -->
         <video class="absolute inset-0 w-full h-full object-cover" data-hero-video preload="none" muted loop playsinline aria-hidden="true"></video>
         <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
         <div class="relative z-10 h-full flex items-center justify-center">

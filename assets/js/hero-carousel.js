@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 
 const AUTOPLAY_DELAY = 7000;
 const CROSSFADE_SPEED = 800;
+const KEN_BURNS_SCALE = 1.06;
 
 function loadVideo(slideEl) {
   const video = slideEl.querySelector('[data-hero-video]');
@@ -22,14 +23,40 @@ function loadVideo(slideEl) {
   return video;
 }
 
+// Slow continuous scale-up on whichever video is currently active — a
+// standard cinematic "Ken Burns" treatment that reads as an intentional
+// directorial choice rather than static/raw footage, independent of the
+// source clip's own resolution or focus. Swiper's own `.swiper` container
+// is overflow-hidden, so the extra 6% scale is clipped safely without
+// affecting layout. Tracks its own target/tween since multiple slides'
+// videos persist in the DOM (Swiper `rewind: true`) and only one should
+// ever be zooming at a time.
+let kenBurnsTween = null;
+let kenBurnsTarget = null;
+
+function startKenBurns(video) {
+  if (!video) return;
+  if (kenBurnsTarget === video && kenBurnsTween) {
+    kenBurnsTween.resume();
+    return;
+  }
+  kenBurnsTween?.kill();
+  if (kenBurnsTarget && kenBurnsTarget !== video) gsap.set(kenBurnsTarget, { scale: 1 });
+  kenBurnsTarget = video;
+  gsap.set(video, { scale: 1, transformOrigin: '50% 50%' });
+  kenBurnsTween = gsap.to(video, { scale: KEN_BURNS_SCALE, duration: AUTOPLAY_DELAY / 1000, ease: 'none' });
+}
+
 function playVideo(video) {
   if (!video) return;
   const playPromise = video.play();
   if (playPromise?.catch) playPromise.catch(() => {});
+  startKenBurns(video);
 }
 
 function pauseVideo(video) {
   video?.pause();
+  if (video && video === kenBurnsTarget) kenBurnsTween?.pause();
 }
 
 function animateSlideText(slideEl) {
