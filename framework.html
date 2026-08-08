@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grow Spark Business Transformation Framework™ — Grow Spark Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --charcoal:#14171A;
+    --charcoal-soft:#1E2226;
+    --grey:#565C63;
+    --grey-light:#8A9096;
+    --hairline:#E4E6E8;
+    --panel:#F6F7F7;
+    --emerald:#0B5E45;
+    --emerald-deep:#083F2F;
+    --emerald-tint:#E6EFEA;
+    --ease: cubic-bezier(.4,0,.2,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; color:var(--charcoal); background:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:'Manrope', sans-serif; font-weight:700; letter-spacing:-0.02em; color:var(--charcoal);}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+  ::selection{background:var(--emerald); color:var(--white);}
+  :focus-visible{outline:2px solid var(--emerald); outline-offset:3px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} html{scroll-behavior:auto;} }
+
+  /* ---------- Header ---------- */
+  header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--hairline);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto;}
+  .logo{font-family:'Manrope', sans-serif; font-weight:800; font-size:19px; letter-spacing:-0.01em; display:flex; align-items:center; gap:9px;}
+  .logo .mark{width:9px; height:9px; border-radius:1px; background:var(--emerald); display:inline-block;}
+  .navlinks{display:flex; gap:32px; align-items:center;}
+  .navlinks a{font-size:14.5px; font-weight:500; color:var(--charcoal-soft); transition:color .2s var(--ease);}
+  .navlinks a:hover, .navlinks a.active{color:var(--emerald);}
+  .nav-cta{background:var(--charcoal); color:var(--white); padding:11px 20px; border-radius:2px; font-size:13px; font-weight:600; transition:background .2s var(--ease); white-space:nowrap;}
+  .nav-cta:hover{background:var(--emerald);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{display:block; width:22px; height:2px; background:var(--charcoal); margin:5px 0;}
+
+  /* ---------- Buttons ---------- */
+  .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn-primary{background:var(--charcoal); color:var(--white); padding:16px 30px; font-size:14.5px; font-weight:600; border-radius:2px; transition:background .2s var(--ease);}
+  .btn-primary:hover{background:var(--emerald);}
+  .btn-secondary{border:1px solid var(--hairline); color:var(--charcoal); padding:16px 30px; font-size:14.5px; font-weight:600; border-radius:2px; transition:border-color .2s var(--ease), color .2s var(--ease);}
+  .btn-secondary:hover{border-color:var(--emerald); color:var(--emerald);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:110px 0 56px; border-bottom:1px solid var(--hairline); text-align:center;}
+  .hero .wrap{max-width:820px;}
+  .eyebrow{font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--emerald); margin-bottom:22px; display:block;}
+  .hero h1{font-size:clamp(30px,5vw,50px); line-height:1.16; margin-bottom:28px;}
+  .hero .lines p{font-size:16px; color:var(--grey); line-height:1.55; margin-bottom:2px;}
+  .hero .lines{margin-bottom:26px;}
+  .hero .pivot{font-family:'Manrope'; font-weight:700; font-size:18px; color:var(--charcoal); max-width:660px; margin:0 auto 28px; line-height:1.5;}
+  .hero .lede{font-size:17.5px; color:var(--charcoal-soft); font-weight:500; max-width:680px; margin:0 auto 40px; line-height:1.6;}
+
+  /* ---------- 5-word strip beneath hero ---------- */
+  .word-strip{padding:30px 0; border-bottom:1px solid var(--hairline);}
+  .word-strip .wrap{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;}
+  .word-strip span{font-family:'Manrope'; font-weight:700; font-size:15px; color:var(--charcoal-soft);}
+  .word-strip .sep{color:var(--emerald); font-weight:400; font-size:14px;}
+
+  /* ---------- Section heading ---------- */
+  .section-head{max-width:680px; margin:0 auto 52px; text-align:center;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(26px,3.8vw,38px); margin-bottom:16px;}
+  .section-head p{color:var(--grey); font-size:16.5px;}
+
+  /* ---------- Why we built it (Section 2) ---------- */
+  .why-built{padding:110px 0; background:var(--panel);}
+  .symptom-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); margin-bottom:40px;}
+  .symptom-item{background:var(--white); padding:22px 26px; display:flex; gap:14px; align-items:flex-start;}
+  .symptom-item .mark2{color:var(--emerald); font-family:'Manrope'; font-weight:800; font-size:15px; flex-shrink:0; margin-top:1px;}
+  .symptom-item p{font-size:15px; color:var(--charcoal-soft); font-weight:500;}
+  .wb-note{max-width:560px; margin:0 auto 28px; text-align:center; color:var(--grey); font-size:15.5px;}
+  .small-list{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:32px;}
+  .small-list span{font-size:13.5px; font-weight:600; color:var(--grey-light); border:1px solid var(--hairline); padding:9px 16px; border-radius:20px; background:var(--white); text-decoration:line-through; text-decoration-color:var(--hairline);}
+  .wb-pivot{text-align:center; font-family:'Manrope'; font-weight:700; font-size:19px; color:var(--charcoal); margin-bottom:36px;}
+  .wb-close{max-width:400px; margin:0 auto; text-align:center;}
+  .wb-close p{font-size:15.5px; color:var(--charcoal-soft); font-weight:500; margin-bottom:4px;}
+  .wb-close p:last-child{font-family:'Manrope'; font-weight:700; color:var(--emerald); font-size:16.5px; margin-top:6px;}
+
+  /* ---------- Five phases (Section 3) ---------- */
+  .phases{padding:120px 0;}
+  .phase-block{border:1px solid var(--hairline); margin-bottom:1px;}
+  .phase-block + .phase-block{margin-top:-1px;}
+  .phase-head{display:flex; align-items:center; gap:22px; padding:32px 36px; background:var(--panel); border-bottom:1px solid var(--hairline); flex-wrap:wrap;}
+  .phase-head .pnum{font-family:'Manrope'; font-weight:800; font-size:15px; color:var(--white); background:var(--emerald); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .phase-head h3{font-size:22px;}
+  .phase-head .sub{font-family:'Manrope'; font-weight:600; font-size:14.5px; color:var(--emerald); margin-top:2px;}
+  .phase-body{padding:32px 36px 36px;}
+  .phase-body > .p-intro{font-size:15.5px; color:var(--charcoal-soft); max-width:700px; margin-bottom:26px;}
+  .phase-cols{display:grid; grid-template-columns:1.4fr 1fr; gap:40px;}
+  .p-label{font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--grey-light); margin-bottom:14px; display:block;}
+  .p-tags{display:flex; flex-wrap:wrap; gap:9px;}
+  .p-tags span{font-size:13px; font-weight:600; color:var(--charcoal-soft); border:1px solid var(--hairline); padding:8px 14px; border-radius:20px; background:var(--white);}
+  .p-side{border-left:1px solid var(--hairline); padding-left:32px;}
+  .p-obj{margin-bottom:24px;}
+  .p-obj p{font-size:14.5px; color:var(--grey); line-height:1.55;}
+  .p-out{background:var(--emerald-tint); border-left:3px solid var(--emerald); padding:14px 18px;}
+  .p-out span{font-size:11.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--emerald); display:block; margin-bottom:4px;}
+  .p-out p{font-family:'Manrope'; font-weight:700; font-size:14.5px; color:var(--emerald-deep);}
+
+  /* ---------- At a glance (Section 4) ---------- */
+  .glance{padding:130px 0; background:var(--emerald-deep); color:var(--white); overflow:hidden;}
+  .glance .section-head h2, .glance .section-head p{color:var(--white);}
+  .glance .section-head p{color:#BFE0D2;}
+  .glance .eyebrow{color:#6FE3B4;}
+  .fw-diagram{display:flex; align-items:flex-start; justify-content:space-between; margin-top:70px; position:relative;}
+  .fw-line{position:absolute; left:0; right:0; top:26px; height:1px; background:rgba(255,255,255,0.16); z-index:0;}
+  .fw-step{flex:1; position:relative; z-index:1; text-align:center; padding:0 14px;}
+  .fw-step .node{width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); margin:0 auto 22px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:14px; color:#6FE3B4; transition:background .3s var(--ease);}
+  .fw-step:hover .node{background:rgba(255,255,255,0.18);}
+  .fw-step h4{color:var(--white); font-size:17px; margin-bottom:10px; font-weight:700;}
+  .fw-step p{color:#BFE0D2; font-size:13.5px; max-width:190px; margin:0 auto;}
+
+  /* ---------- What makes our method different (Section 5) ---------- */
+  .diff{padding:110px 0;}
+  .why-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .why-card{background:var(--white); padding:30px 32px; display:flex; gap:18px; align-items:flex-start;}
+  .why-card .num{font-family:'Manrope'; font-weight:800; font-size:15px; color:var(--emerald); flex-shrink:0;}
+  .why-card h4{font-size:16.5px; font-weight:600; margin-bottom:6px;}
+  .why-card p{font-size:14px; color:var(--grey);}
+
+  /* ---------- Scorecard (Section 6) ---------- */
+  .scorecard{padding:110px 0; background:var(--panel);}
+  .score-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); margin-bottom:36px;}
+  .score-card{background:var(--white); padding:26px 24px;}
+  .score-card h4{font-size:15px; color:var(--emerald-deep); margin-bottom:14px;}
+  .score-card ul{list-style:none;}
+  .score-card li{font-size:13.5px; color:var(--grey); padding:5px 0; padding-left:14px; position:relative;}
+  .score-card li::before{content:'—'; position:absolute; left:0; color:var(--grey-light);}
+  .score-ev{max-width:640px; margin:0 auto; text-align:center; border:1px solid var(--emerald); background:var(--emerald-tint); padding:26px 30px;}
+  .score-ev p:first-child{font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--emerald); margin-bottom:10px;}
+  .score-ev p:last-child{font-family:'Manrope'; font-weight:700; font-size:17px; color:var(--emerald-deep);}
+
+  /* ---------- Different transformation paths (Section 7) ---------- */
+  .paths{padding:110px 0;}
+  .path-row{border:1px solid var(--hairline); padding:26px 30px; margin-bottom:1px;}
+  .path-row + .path-row{margin-top:-1px;}
+  .path-label{font-family:'Manrope'; font-weight:700; font-size:15px; color:var(--charcoal); margin-bottom:14px; display:block;}
+  .path-chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
+  .path-chain span.step{font-size:13.5px; font-weight:600; color:var(--charcoal-soft); border:1px solid var(--hairline); padding:9px 16px; border-radius:20px; background:var(--panel);}
+  .path-chain span.arrow3{color:var(--emerald); font-size:14px;}
+  .paths-close{text-align:center; margin-top:36px; font-family:'Manrope'; font-weight:700; font-size:17px; color:var(--charcoal);}
+  .paths-close span{display:block; font-weight:500; font-size:14.5px; color:var(--grey); margin-top:4px; font-family:'Inter';}
+
+  /* ---------- From problem to outcome (Section 8) ---------- */
+  .flow{padding:110px 0; background:var(--charcoal); color:var(--white);}
+  .flow .section-head h2, .flow .section-head p{color:var(--white);}
+  .flow .section-head p{color:#B9BEC3;}
+  .flow .eyebrow{color:#4FCB9B;}
+  .flow-vertical{max-width:560px; margin:0 auto; display:flex; flex-direction:column; align-items:center;}
+  .flow-step{width:100%; background:var(--charcoal-soft); border:1px solid rgba(255,255,255,0.1); padding:20px 26px; text-align:center;}
+  .flow-step .ft{font-family:'Manrope'; font-weight:700; font-size:15.5px; color:var(--white);}
+  .flow-step .fd{font-size:13.5px; color:#9BA1A7; margin-top:4px;}
+  .flow-arrow{color:#4FCB9B; font-size:18px; padding:10px 0;}
+  .flow-outcome{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:8px;}
+  .flow-outcome span{font-size:12.5px; font-weight:600; color:#D6D9DC; border:1px solid rgba(255,255,255,0.18); padding:7px 14px; border-radius:16px;}
+
+  /* ---------- Three situations (Section 9) ---------- */
+  .situations{padding:110px 0;}
+  .sit-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .sit-card{background:var(--white); padding:36px 30px;}
+  .sit-card .tag{font-family:'Manrope'; font-weight:800; font-size:13px; letter-spacing:0.06em; color:var(--emerald); display:block; margin-bottom:14px;}
+  .sit-card p{font-size:14.5px; color:var(--grey); line-height:1.6;}
+  .sit-card p strong{color:var(--charcoal-soft);}
+
+  /* ---------- Transformation should create value (Section 10) ---------- */
+  .value-sec{padding:100px 0; background:var(--emerald-deep); color:var(--white); text-align:center;}
+  .value-sec .eyebrow{color:#6FE3B4;}
+  .value-sec h2{color:var(--white); font-size:clamp(26px,3.8vw,36px); margin-bottom:36px; max-width:600px; margin-left:auto; margin-right:auto;}
+  .value-chips{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:36px; max-width:760px; margin-left:auto; margin-right:auto;}
+  .value-chips span{font-family:'Manrope'; font-weight:600; font-size:13.5px; padding:10px 18px; border:1px solid rgba(255,255,255,0.22); border-radius:20px; color:var(--white);}
+  .value-line{font-family:'Manrope'; font-weight:700; font-size:clamp(17px,2.4vw,21px); max-width:560px; margin:0 auto; color:#BFE0D2; line-height:1.5;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{padding:120px 0; text-align:center; background:var(--charcoal); color:var(--white);}
+  .final-cta .eyebrow{color:#4FCB9B; margin-bottom:18px;}
+  .final-cta h2{color:var(--white); font-size:clamp(28px,4.2vw,44px); margin-bottom:20px; line-height:1.2;}
+  .final-cta p{color:#9BA1A7; margin-bottom:40px; font-size:16.5px; max-width:520px; margin-left:auto; margin-right:auto;}
+  .final-cta .btn-secondary{border-color:rgba(255,255,255,0.25); color:var(--white);}
+  .final-cta .btn-secondary:hover{border-color:var(--emerald); color:#4FCB9B;}
+  .final-cta .btn-primary{background:var(--emerald);}
+  .final-cta .btn-primary:hover{background:#0e7a58;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:56px 0 40px; border-top:1px solid var(--hairline); text-align:center;}
+  footer .statement{max-width:600px; margin:0 auto 20px; color:var(--grey); font-size:15px;}
+  footer .statement strong{display:block; color:var(--charcoal); font-family:'Manrope'; font-weight:700; font-size:16px; margin-bottom:8px;}
+  footer .tagline{font-family:'Manrope'; font-weight:600; font-size:13.5px; color:var(--emerald); margin-bottom:24px;}
+  footer .foot-links{display:flex; justify-content:center; gap:24px; margin-bottom:24px; flex-wrap:wrap;}
+  footer .foot-links a{font-size:14px; color:var(--charcoal-soft);}
+  footer .foot-links a:hover{color:var(--emerald);}
+  footer .copyright{font-size:13px; color:var(--grey-light);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .nav-toggle{display:block;}
+    .symptom-grid, .why-grid, .score-grid, .sit-grid{grid-template-columns:1fr;}
+    .phase-cols{grid-template-columns:1fr; gap:24px;}
+    .p-side{border-left:none; padding-left:0; border-top:1px solid var(--hairline); padding-top:24px;}
+    .fw-diagram{flex-direction:column; gap:36px; align-items:flex-start;}
+    .fw-line{display:none;}
+    .fw-step{text-align:left; display:flex; align-items:center; gap:18px; max-width:none;}
+    .fw-step .node{margin:0;}
+    .fw-step p{max-width:none; margin:0;}
+    .word-strip .wrap{gap:8px;}
+    .word-strip span{font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo"><span class="mark"></span>Grow Spark</a>
+    <div class="navlinks">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#challenges">Business Challenges</a>
+      <a href="framework.html" class="active">Our Framework</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#insights">Insights</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="#assessment" class="nav-cta">Request Assessment</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap reveal">
+    <span class="eyebrow">Our Methodology</span>
+    <h1>The Grow Spark Business Transformation Framework™</h1>
+    <div class="lines">
+      <p>Businesses don't need more advice.</p>
+      <p>They need a system for turning strategy into measurable change.</p>
+    </div>
+    <p class="pivot">Most consulting engagements begin with recommendations. We believe transformation should begin with diagnosis.</p>
+    <p class="lede">Because the wrong diagnosis produces the wrong strategy. And the wrong strategy produces expensive execution. The Grow Spark Business Transformation Framework™ is our disciplined five-phase methodology for understanding a business, identifying its true constraints, designing the right transformation and driving measurable results.</p>
+    <div class="cta-row">
+      <a href="#assessment" class="btn-primary">Request a Business Transformation Assessment™</a>
+      <a href="#phases" class="btn-secondary">Explore The Five Phases</a>
+    </div>
+  </div>
+</section>
+
+<div class="word-strip">
+  <div class="wrap reveal">
+    <span>Discover</span><span class="sep">→</span>
+    <span>Diagnose</span><span class="sep">→</span>
+    <span>Design</span><span class="sep">→</span>
+    <span>Deploy</span><span class="sep">→</span>
+    <span>Drive</span>
+  </div>
+</div>
+
+<!-- SECTION 2: WHY WE BUILT THE FRAMEWORK -->
+<section class="why-built">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why We Built The Framework</span>
+      <h2>Every Business Is Different. The Fundamentals Of Transformation Are Not.</h2>
+      <p>Businesses become difficult to grow for different reasons.</p>
+    </div>
+    <div class="symptom-grid reveal">
+      <div class="symptom-item"><span class="mark2">—</span><p>Growth has stalled.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Margins are disappearing.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Leadership isn't aligned.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Operations have become too complex.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>The business has outgrown its systems.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>The company doesn't know what's actually holding it back.</p></div>
+    </div>
+    <p class="wb-note reveal">The problem is that businesses often respond to symptoms.</p>
+    <div class="small-list reveal">
+      <span>More marketing</span><span>More hiring</span><span>More software</span><span>More sales</span><span>More meetings</span><span>More technology</span>
+    </div>
+    <p class="wb-pivot reveal">But more activity doesn't necessarily create more value.</p>
+    <div class="wb-close reveal">
+      <p>The first job is to understand the business.</p>
+      <p>Then identify what matters most.</p>
+      <p>Then change it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: THE FIVE PHASES -->
+<section class="phases" id="phases">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">One Framework. Five Phases.</span>
+      <h2>A Disciplined Path From Business Problem To Measurable Outcome</h2>
+    </div>
+
+    <div class="phase-block reveal">
+      <div class="phase-head">
+        <div class="pnum">01</div>
+        <div>
+          <h3>Discover</h3>
+          <p class="sub">Understand Before We Recommend.</p>
+        </div>
+      </div>
+      <div class="phase-body">
+        <p class="p-intro">Transformation starts with context. We develop a complete understanding of the business, its market, leadership ambition and current operating environment.</p>
+        <div class="phase-cols">
+          <div>
+            <span class="p-label">We Examine</span>
+            <div class="p-tags">
+              <span>Business model</span><span>Market</span><span>Customers</span><span>Competition</span><span>Leadership</span><span>Products &amp; services</span><span>Revenue model</span><span>Operations</span><span>People</span><span>Technology</span><span>Current performance</span>
+            </div>
+          </div>
+          <div class="p-side">
+            <div class="p-obj"><span class="p-label">The Objective</span><p>Build a clear picture of where the organisation is today — and where leadership wants it to go.</p></div>
+            <div class="p-out"><span>Output</span><p>Business Discovery &amp; Transformation Baseline</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block reveal">
+      <div class="phase-head">
+        <div class="pnum">02</div>
+        <div>
+          <h3>Diagnose</h3>
+          <p class="sub">Find The Constraint.</p>
+        </div>
+      </div>
+      <div class="phase-body">
+        <p class="p-intro">The most important question isn't "What should we change?" It's "What is actually preventing the business from performing better?" We analyse the organisation to distinguish symptoms from root causes.</p>
+        <div class="phase-cols">
+          <div>
+            <span class="p-label">We Identify</span>
+            <div class="p-tags">
+              <span>Growth constraints</span><span>Profitability leakage</span><span>Operational bottlenecks</span><span>Leadership gaps</span><span>Customer experience friction</span><span>Technology limitations</span><span>Scalability risks</span><span>Strategic misalignment</span><span>Market opportunities</span>
+            </div>
+          </div>
+          <div class="p-side">
+            <div class="p-obj"><span class="p-label">The Objective</span><p>Identify the highest-impact constraints and opportunities. Not everything needs to change. The right things do.</p></div>
+            <div class="p-out"><span>Output</span><p>Business Transformation Diagnosis</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block reveal">
+      <div class="phase-head">
+        <div class="pnum">03</div>
+        <div>
+          <h3>Design</h3>
+          <p class="sub">Build The Right Solution.</p>
+        </div>
+      </div>
+      <div class="phase-body">
+        <p class="p-intro">Once the problem is understood, we design the transformation. Not a generic strategy — a business-specific architecture for the next stage.</p>
+        <div class="phase-cols">
+          <div>
+            <span class="p-label">We May Design</span>
+            <div class="p-tags">
+              <span>Growth strategy</span><span>Business model</span><span>Operating model</span><span>Organisation structure</span><span>Customer experience</span><span>Brand positioning</span><span>Pricing architecture</span><span>Technology roadmap</span><span>AI strategy</span><span>Sales systems</span><span>Marketing systems</span><span>Performance management</span><span>Transformation roadmap</span>
+            </div>
+          </div>
+          <div class="p-side">
+            <div class="p-obj"><span class="p-label">The Objective</span><p>Create a practical strategy that leadership can actually execute.</p></div>
+            <div class="p-out"><span>Output</span><p>Transformation Blueprint &amp; 90/180/365-Day Roadmap</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block reveal">
+      <div class="phase-head">
+        <div class="pnum">04</div>
+        <div>
+          <h3>Deploy</h3>
+          <p class="sub">Strategy Becomes Reality.</p>
+        </div>
+      </div>
+      <div class="phase-body">
+        <p class="p-intro">A strategy sitting inside a presentation creates no value. Deployment is where transformation enters the business. We work alongside leadership and relevant teams to implement the highest-priority initiatives.</p>
+        <div class="phase-cols">
+          <div>
+            <span class="p-label">Deployment May Include</span>
+            <div class="p-tags">
+              <span>Process redesign</span><span>Operating model implementation</span><span>System implementation</span><span>Technology deployment</span><span>Team restructuring</span><span>KPI implementation</span><span>Customer journey redesign</span><span>Go-to-market execution</span><span>Change management</span><span>Capability building</span>
+            </div>
+          </div>
+          <div class="p-side">
+            <div class="p-obj"><span class="p-label">The Objective</span><p>Move from recommendation to implementation without losing strategic direction.</p></div>
+            <div class="p-out"><span>Output</span><p>Implemented Transformation Initiatives</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block reveal">
+      <div class="phase-head">
+        <div class="pnum">05</div>
+        <div>
+          <h3>Drive</h3>
+          <p class="sub">Make The Change Compound.</p>
+        </div>
+      </div>
+      <div class="phase-body">
+        <p class="p-intro">Transformation isn't finished when implementation ends. The organisation needs to keep improving. We establish the systems, metrics and management rhythm required to sustain momentum.</p>
+        <div class="phase-cols">
+          <div>
+            <span class="p-label">We Monitor</span>
+            <div class="p-tags">
+              <span>Revenue</span><span>Profitability</span><span>Cash flow</span><span>Customer performance</span><span>Operational performance</span><span>Productivity</span><span>Strategic KPIs</span><span>Transformation milestones</span><span>Business value</span>
+            </div>
+          </div>
+          <div class="p-side">
+            <div class="p-obj"><span class="p-label">The Objective</span><p>Turn transformation into an ongoing capability rather than a one-time project.</p></div>
+            <div class="p-out"><span>Output</span><p>Continuous Improvement &amp; Growth System</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 4: AT A GLANCE -->
+<section class="glance">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Framework At A Glance</span>
+      <h2>Discover. Diagnose. Design. Deploy. Drive.</h2>
+      <p>Every phase has defined objectives, deliverables, tools and success metrics — the foundation of the Grow Spark methodology.</p>
+    </div>
+    <div class="fw-diagram reveal">
+      <div class="fw-line"></div>
+      <div class="fw-step"><div class="node">01</div><h4>Discover</h4><p>Understand the business.</p></div>
+      <div class="fw-step"><div class="node">02</div><h4>Diagnose</h4><p>Identify the real constraints.</p></div>
+      <div class="fw-step"><div class="node">03</div><h4>Design</h4><p>Architect the transformation.</p></div>
+      <div class="fw-step"><div class="node">04</div><h4>Deploy</h4><p>Implement the change.</p></div>
+      <div class="fw-step"><div class="node">05</div><h4>Drive</h4><p>Sustain and compound the results.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: WHAT MAKES OUR METHOD DIFFERENT -->
+<section class="diff">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What Makes Our Method Different</span>
+      <h2>Six Principles Behind Every Engagement</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><span class="num">01</span><div><h4>We Start With The Business Problem</h4><p>We don't begin with a service catalogue. We begin with what's preventing the organisation from achieving its objectives.</p></div></div>
+      <div class="why-card"><span class="num">02</span><div><h4>We Diagnose Before We Prescribe</h4><p>Recommendations come after understanding the business — not before.</p></div></div>
+      <div class="why-card"><span class="num">03</span><div><h4>We Connect Strategy To Execution</h4><p>Strategy, people, processes and technology need to work together.</p></div></div>
+      <div class="why-card"><span class="num">04</span><div><h4>We Prioritise Impact</h4><p>Not every opportunity deserves investment. We prioritise initiatives according to business impact, feasibility and strategic importance.</p></div></div>
+      <div class="why-card"><span class="num">05</span><div><h4>We Stay Accountable Beyond The Strategy</h4><p>Transformation requires implementation. We can remain involved through deployment and continuous improvement.</p></div></div>
+      <div class="why-card"><span class="num">06</span><div><h4>We Measure Business Outcomes</h4><p>Our work isn't measured by the number of presentations, meetings or deliverables produced. It is measured by what changes in the business.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: SCORECARD -->
+<section class="scorecard">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Every Transformation Has A Scorecard</span>
+      <h2>We Establish Success Metrics Before Transformation Begins</h2>
+      <p>Depending on the engagement, these may include:</p>
+    </div>
+    <div class="score-grid reveal">
+      <div class="score-card"><h4>Revenue</h4><ul><li>Growth rate</li><li>New revenue</li><li>Revenue per customer</li><li>Conversion</li></ul></div>
+      <div class="score-card"><h4>Profitability</h4><ul><li>Gross margin</li><li>Operating margin</li><li>Cost reduction</li><li>Profit contribution</li></ul></div>
+      <div class="score-card"><h4>Cash Flow</h4><ul><li>Working capital</li><li>Cash conversion</li><li>Operating cash flow</li></ul></div>
+      <div class="score-card"><h4>Customer</h4><ul><li>Retention</li><li>Customer lifetime value</li><li>Satisfaction</li><li>Repeat purchase</li></ul></div>
+      <div class="score-card"><h4>Operations</h4><ul><li>Productivity</li><li>Cycle time</li><li>Error rates</li><li>Capacity</li></ul></div>
+      <div class="score-card"><h4>Organisation</h4><ul><li>Leadership effectiveness</li><li>Accountability</li><li>Employee productivity</li><li>Execution speed</li></ul></div>
+      <div class="score-card" style="grid-column:span 2;"><h4>Enterprise Value</h4><ul><li>The ultimate question: has the transformation made the business stronger and more valuable?</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: DIFFERENT TRANSFORMATION PATHS -->
+<section class="paths">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">One Framework. Different Transformation Paths.</span>
+      <h2>The Framework Stays Constant. The Intervention Changes.</h2>
+    </div>
+    <div class="reveal">
+      <div class="path-row">
+        <span class="path-label">A company launching a new business may need</span>
+        <div class="path-chain">
+          <span class="step">Market validation</span><span class="arrow3">→</span>
+          <span class="step">Business model</span><span class="arrow3">→</span>
+          <span class="step">Operating model</span><span class="arrow3">→</span>
+          <span class="step">Brand</span><span class="arrow3">→</span>
+          <span class="step">Go-to-market</span><span class="arrow3">→</span>
+          <span class="step">Launch</span>
+        </div>
+      </div>
+      <div class="path-row">
+        <span class="path-label">An established company may need</span>
+        <div class="path-chain">
+          <span class="step">Diagnosis</span><span class="arrow3">→</span>
+          <span class="step">Restructuring</span><span class="arrow3">→</span>
+          <span class="step">Process redesign</span><span class="arrow3">→</span>
+          <span class="step">Technology</span><span class="arrow3">→</span>
+          <span class="step">Growth</span>
+        </div>
+      </div>
+      <div class="path-row">
+        <span class="path-label">A growing company may need</span>
+        <div class="path-chain">
+          <span class="step">Scalability</span><span class="arrow3">→</span>
+          <span class="step">Systems</span><span class="arrow3">→</span>
+          <span class="step">Leadership</span><span class="arrow3">→</span>
+          <span class="step">Customer experience</span><span class="arrow3">→</span>
+          <span class="step">Expansion</span>
+        </div>
+      </div>
+    </div>
+    <p class="paths-close reveal">The framework is consistent.<span>The transformation isn't.</span></p>
+  </div>
+</section>
+
+<!-- SECTION 8: FROM PROBLEM TO OUTCOME -->
+<section class="flow">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">From Problem To Outcome</span>
+      <h2>How A Constraint Becomes A Result</h2>
+    </div>
+    <div class="flow-vertical reveal">
+      <div class="flow-step"><div class="ft">Business Problem</div><div class="fd">Something is limiting growth or performance.</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><div class="ft">Assessment</div><div class="fd">We understand the organisation.</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><div class="ft">Diagnosis</div><div class="fd">We identify the real constraint.</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><div class="ft">Transformation Strategy</div><div class="fd">We determine what needs to change.</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><div class="ft">Implementation</div><div class="fd">We deploy the highest-impact initiatives.</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="ft">Business Outcome</div>
+        <div class="flow-outcome">
+          <span>Revenue</span><span>Profit</span><span>Cash flow</span><span>Performance</span><span>Enterprise value</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: THREE TRANSFORMATION SITUATIONS -->
+<section class="situations">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Built For Three Transformation Situations</span>
+      <h2>Wherever Your Business Is, The Framework Applies</h2>
+    </div>
+    <div class="sit-grid reveal">
+      <div class="sit-card"><span class="tag">Build</span><p>For founders, investors and organisations creating new businesses. <strong>We help establish the foundations required to build correctly from day one.</strong></p></div>
+      <div class="sit-card"><span class="tag">Transform</span><p>For established businesses that need to modernise, restructure or improve performance. <strong>We identify what needs to change and guide the transformation.</strong></p></div>
+      <div class="sit-card"><span class="tag">Scale</span><p>For businesses that have proven demand but need stronger systems, leadership, technology and operating infrastructure. <strong>We help them grow sustainably.</strong></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: TRANSFORMATION SHOULD CREATE VALUE -->
+<section class="value-sec">
+  <div class="wrap">
+    <span class="eyebrow reveal">Transformation Should Create Value</span>
+    <h2 class="reveal">Every Engagement Is Ultimately Measured Against One Question: Did We Make The Business Better?</h2>
+    <div class="value-chips reveal">
+      <span>Better revenue</span><span>Better profit</span><span>Better cash flow</span><span>Better operations</span><span>Better customer experience</span><span>Better leadership</span><span>Better systems</span><span>Better resilience</span><span>Greater enterprise value</span>
+    </div>
+    <p class="value-line reveal">If the answer isn't measurable, the transformation isn't finished.</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="assessment">
+  <div class="wrap reveal">
+    <span class="eyebrow">The Framework Is The Beginning</span>
+    <h2>The Assessment Is Where Your Transformation Starts.</h2>
+    <p>Your business has its own constraints, its own opportunities and its own path. The first step is understanding where you are today.</p>
+    <div class="cta-row">
+      <a href="index.html#contact" class="btn-primary">Request Your Business Transformation Assessment™</a>
+      <a href="index.html#contact" class="btn-secondary">Book An Executive Strategy Session</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="statement">
+      <strong>Grow Spark Consulting partners with founders and leadership teams to transform businesses through strategy, technology and execution.</strong>
+      Diagnose better. Transform smarter. Build better businesses.
+    </p>
+    <p class="tagline">Discover. Diagnose. Design. Deploy. Drive.</p>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#challenges">Business Challenges</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <p class="copyright">© 2026 Grow Spark Consulting. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.1});
+  revealEls.forEach(el=>io.observe(el));
+
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.navlinks');
+  toggle.addEventListener('click', ()=>{
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; padding:24px 32px; border-bottom:1px solid #E4E6E8; gap:20px;';
+  });
+</script>
+
+</body>
+</html>

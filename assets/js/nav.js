@@ -120,6 +120,7 @@ function initMobileDrawer() {
     });
     document.documentElement.classList.add('overflow-hidden');
     toggle.setAttribute('aria-expanded', 'true');
+    closeBtn?.focus();
   };
 
   const close = () => {
@@ -130,13 +131,32 @@ function initMobileDrawer() {
     document.documentElement.classList.remove('overflow-hidden');
     toggle.setAttribute('aria-expanded', 'false');
     setTimeout(() => drawer.classList.add('invisible'), 450);
+    toggle.focus();
   };
 
   toggle.addEventListener('click', open);
   closeBtn?.addEventListener('click', close);
   backdrop.addEventListener('click', close);
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !drawer.classList.contains('invisible')) close();
+    if (drawer.classList.contains('invisible')) return;
+    if (event.key === 'Escape') {
+      close();
+      return;
+    }
+    // Trap focus inside the open drawer — without this, tabbing past the
+    // last link lands on the page content the drawer is visually covering.
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(panel.querySelectorAll('a[href], button:not([disabled])'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
   drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
 }

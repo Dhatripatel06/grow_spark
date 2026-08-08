@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revenue Is Growing. Profit Isn't. — Grow Spark Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --charcoal:#14171A;
+    --charcoal-soft:#1E2226;
+    --grey:#565C63;
+    --grey-light:#8A9096;
+    --hairline:#E4E6E8;
+    --panel:#F6F7F7;
+    --emerald:#0B5E45;
+    --emerald-deep:#083F2F;
+    --emerald-tint:#E6EFEA;
+    --ease: cubic-bezier(.4,0,.2,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; color:var(--charcoal); background:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:'Manrope', sans-serif; font-weight:700; letter-spacing:-0.02em; color:var(--charcoal);}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+  ::selection{background:var(--emerald); color:var(--white);}
+  :focus-visible{outline:2px solid var(--emerald); outline-offset:3px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} html{scroll-behavior:auto;} }
+
+  /* ---------- Header ---------- */
+  header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--hairline);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto;}
+  .logo{font-family:'Manrope', sans-serif; font-weight:800; font-size:19px; letter-spacing:-0.01em; display:flex; align-items:center; gap:9px;}
+  .logo .mark{width:9px; height:9px; border-radius:1px; background:var(--emerald); display:inline-block;}
+  .navlinks{display:flex; gap:32px; align-items:center;}
+  .navlinks a{font-size:14.5px; font-weight:500; color:var(--charcoal-soft); transition:color .2s var(--ease);}
+  .navlinks a:hover{color:var(--emerald);}
+  .nav-cta{background:var(--charcoal); color:var(--white); padding:11px 20px; border-radius:2px; font-size:13px; font-weight:600; transition:background .2s var(--ease); white-space:nowrap;}
+  .nav-cta:hover{background:var(--emerald);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{display:block; width:22px; height:2px; background:var(--charcoal); margin:5px 0;}
+
+  /* ---------- Buttons ---------- */
+  .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn-primary{background:var(--charcoal); color:var(--white); padding:16px 30px; font-size:14.5px; font-weight:600; border-radius:2px; transition:background .2s var(--ease);}
+  .btn-primary:hover{background:var(--emerald);}
+  .btn-secondary{border:1px solid var(--hairline); color:var(--charcoal); padding:16px 30px; font-size:14.5px; font-weight:600; border-radius:2px; transition:border-color .2s var(--ease), color .2s var(--ease);}
+  .btn-secondary:hover{border-color:var(--emerald); color:var(--emerald);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:110px 0 90px; border-bottom:1px solid var(--hairline); text-align:center;}
+  .hero .wrap{max-width:840px;}
+  .eyebrow{font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--emerald); margin-bottom:22px; display:block;}
+  .hero h1{font-size:clamp(28px,4.8vw,46px); line-height:1.2; margin-bottom:28px;}
+  .hero .lines p{font-size:16px; color:var(--grey); line-height:1.55; margin-bottom:2px;}
+  .hero .lines{margin-bottom:18px;}
+  .hero .pivot{font-family:'Manrope'; font-weight:700; font-size:19px; color:var(--charcoal); margin-bottom:28px;}
+  .hero .pivot span{color:var(--emerald);}
+  .hero .lede{font-size:17.5px; color:var(--charcoal-soft); font-weight:500; max-width:660px; margin:0 auto 40px; line-height:1.6;}
+
+  /* ---------- Section heading ---------- */
+  .section-head{max-width:680px; margin:0 auto 52px; text-align:center;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(26px,3.8vw,38px); margin-bottom:16px;}
+  .section-head p{color:var(--grey); font-size:16.5px;}
+
+  /* ---------- Symptoms (Section 2) ---------- */
+  .symptoms{padding:100px 0; background:var(--panel);}
+  .symptom-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); margin-bottom:40px;}
+  .symptom-item{background:var(--white); padding:24px 28px; display:flex; gap:14px; align-items:flex-start;}
+  .symptom-item .mark2{color:var(--emerald); font-family:'Manrope'; font-weight:800; font-size:15px; flex-shrink:0; margin-top:1px;}
+  .symptom-item p{font-size:15px; color:var(--charcoal-soft); font-weight:500;}
+  .symptoms-note{max-width:640px; margin:0 auto; text-align:center; color:var(--grey); font-size:15.5px;}
+  .symptoms-note strong{color:var(--charcoal); display:block; font-family:'Manrope'; font-weight:700; font-size:17px; margin-top:6px;}
+
+  /* ---------- Profit is designed (Section 3) ---------- */
+  .designed{padding:110px 0;}
+  .designed-intro{max-width:620px; margin:0 auto 40px; text-align:center; color:var(--grey); font-size:16.5px;}
+  .designed-intro p{margin-bottom:4px;}
+  .designed-chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:36px;}
+  .designed-chips span{font-size:13.5px; font-weight:600; color:var(--charcoal-soft); border:1px solid var(--hairline); padding:10px 18px; border-radius:20px; background:var(--panel);}
+  .designed-close{text-align:center; max-width:600px; margin:0 auto;}
+  .designed-close p{font-size:15.5px; color:var(--grey);}
+  .designed-close p.strong{font-family:'Manrope'; font-weight:700; color:var(--charcoal); font-size:17px; margin-top:6px;}
+
+  /* ---------- Hidden reasons (Section 4) ---------- */
+  .hidden{padding:110px 0; background:var(--panel);}
+  .hidden-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); margin-bottom:36px;}
+  .hidden-card{background:var(--white); padding:22px 24px; font-size:14.5px; color:var(--charcoal-soft); font-weight:500;}
+  .hidden-close{text-align:center; color:var(--grey); font-size:15px; max-width:600px; margin:0 auto;}
+
+  /* ---------- Cost of ignoring (Section 5) ---------- */
+  .cost{padding:100px 0; background:var(--charcoal); color:var(--white);}
+  .cost .section-head h2, .cost .section-head p{color:var(--white);}
+  .cost .section-head p{color:#B9BEC3;}
+  .cost .eyebrow{color:#4FCB9B;}
+  .cost-flow{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:44px;}
+  .cost-flow span{font-family:'Manrope'; font-weight:600; font-size:13.5px; padding:10px 18px; border:1px solid rgba(255,255,255,0.18); border-radius:20px; color:#D6D9DC;}
+  .cost-line{text-align:center; font-family:'Manrope'; font-weight:700; font-size:clamp(18px,2.6vw,24px); max-width:600px; margin:0 auto; color:var(--white); line-height:1.5;}
+
+  /* ---------- Assessment (Section 6) ---------- */
+  .approach{padding:110px 0;}
+  .assess-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .assess-card{background:var(--white); padding:26px 20px; text-align:center;}
+  .assess-card span{font-family:'Manrope'; font-weight:600; font-size:14px; color:var(--charcoal-soft);}
+
+  /* ---------- Framework (Section 7) ---------- */
+  .framework{padding:130px 0; background:var(--emerald-deep); color:var(--white); overflow:hidden;}
+  .framework .section-head h2, .framework .section-head p{color:var(--white);}
+  .framework .section-head p{color:#BFE0D2;}
+  .framework .eyebrow{color:#6FE3B4;}
+  .fw-diagram{display:flex; align-items:flex-end; justify-content:space-between; margin-top:70px; position:relative;}
+  .fw-line{position:absolute; left:0; right:0; top:calc(50% - 1px); height:1px; background:rgba(255,255,255,0.16); z-index:0;}
+  .fw-step{flex:1; position:relative; z-index:1; text-align:center; padding:0 14px;}
+  .fw-step .node{width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); margin:0 auto 22px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:14px; color:#6FE3B4; transition:background .3s var(--ease);}
+  .fw-step:hover .node{background:rgba(255,255,255,0.18);}
+  .fw-step h4{color:var(--white); font-size:17px; margin-bottom:10px; font-weight:700;}
+  .fw-step p{color:#BFE0D2; font-size:13.5px; max-width:190px; margin:0 auto;}
+
+  /* ---------- Outcomes (Section 8) ---------- */
+  .outcomes{padding:110px 0; background:var(--panel);}
+  .outcomes-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .outcome-card{background:var(--white); padding:30px 28px;}
+  .outcome-card .n{font-family:'Manrope'; font-weight:700; font-size:12px; color:var(--emerald); margin-bottom:14px; display:block;}
+  .outcome-card h4{font-size:15.5px; font-weight:600;}
+
+  /* ---------- Who we work with (Section 9) ---------- */
+  .who{padding:110px 0;}
+  .who-box{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .who-list{list-style:none;}
+  .who-list li{font-size:16px; font-weight:500; padding:12px 0; border-bottom:1px solid var(--hairline); color:var(--charcoal-soft);}
+  .who-list li:last-child{border-bottom:none;}
+  .who-revenue{background:var(--emerald-tint); border:1px solid var(--hairline); padding:40px 34px; text-align:center;}
+  .who-revenue .label{font-size:12.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--emerald-deep); font-weight:700; margin-bottom:16px; display:block;}
+  .who-revenue .range{font-family:'Manrope'; font-weight:800; font-size:clamp(22px,2.8vw,30px); color:var(--emerald-deep); margin-bottom:10px;}
+  .who-revenue p{font-size:14px; color:var(--charcoal-soft);}
+
+  /* ---------- Why (Section 10) ---------- */
+  .why{padding:110px 0; background:var(--panel);}
+  .why-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+  .why-card{background:var(--white); padding:28px 30px; display:flex; gap:16px; align-items:flex-start;}
+  .why-card .num{font-family:'Manrope'; font-weight:800; font-size:14px; color:var(--emerald); flex-shrink:0;}
+  .why-card p{font-size:15.5px; color:var(--charcoal-soft); font-weight:500;}
+  .why-close{text-align:center; font-family:'Manrope'; font-weight:700; font-style:italic; font-size:17px; color:var(--charcoal); margin-top:40px;}
+
+  /* ---------- FAQ (Section 11) ---------- */
+  .faq{padding:110px 0;}
+  .faq-list{max-width:760px; margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--hairline);}
+  .faq-q{width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:24px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:'Manrope'; font-weight:600; font-size:16.5px; color:var(--charcoal);}
+  .faq-q .plus{font-size:20px; color:var(--emerald); transition:transform .25s var(--ease); flex-shrink:0;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s var(--ease);}
+  .faq-a p{padding-bottom:24px; color:var(--grey); font-size:15px; max-width:640px;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{padding:120px 0; text-align:center; background:var(--charcoal); color:var(--white);}
+  .final-cta h2{color:var(--white); font-size:clamp(28px,4.2vw,44px); margin-bottom:20px; line-height:1.2;}
+  .final-cta p{color:#9BA1A7; margin-bottom:40px; font-size:16.5px; max-width:520px; margin-left:auto; margin-right:auto;}
+  .final-cta .btn-secondary{border-color:rgba(255,255,255,0.25); color:var(--white);}
+  .final-cta .btn-secondary:hover{border-color:var(--emerald); color:#4FCB9B;}
+  .final-cta .btn-primary{background:var(--emerald);}
+  .final-cta .btn-primary:hover{background:#0e7a58;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:56px 0 40px; border-top:1px solid var(--hairline); text-align:center;}
+  footer .statement{max-width:600px; margin:0 auto 20px; color:var(--grey); font-size:15px;}
+  footer .statement strong{display:block; color:var(--charcoal); font-family:'Manrope'; font-weight:700; font-size:16px; margin-bottom:8px;}
+  footer .foot-links{display:flex; justify-content:center; gap:24px; margin-bottom:24px; flex-wrap:wrap;}
+  footer .foot-links a{font-size:14px; color:var(--charcoal-soft);}
+  footer .foot-links a:hover{color:var(--emerald);}
+  footer .copyright{font-size:13px; color:var(--grey-light);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .nav-toggle{display:block;}
+    .symptom-grid, .hidden-grid, .assess-grid, .outcomes-grid, .why-grid, .who-box{grid-template-columns:1fr;}
+    .fw-diagram{flex-direction:column; gap:36px; align-items:flex-start;}
+    .fw-line{display:none;}
+    .fw-step{text-align:left; display:flex; align-items:center; gap:18px; max-width:none;}
+    .fw-step .node{margin:0;}
+    .fw-step p{max-width:none; margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo"><span class="mark"></span>Grow Spark</a>
+    <div class="navlinks">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#challenges">Business Challenges</a>
+      <a href="index.html#framework">Our Framework</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#insights">Insights</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="#assessment" class="nav-cta">Request Assessment</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap reveal">
+    <span class="eyebrow">Revenue Is Growing. Profit Isn't.</span>
+    <h1>More Revenue Doesn't Always Mean A Better Business.</h1>
+    <div class="lines">
+      <p>Many businesses celebrate record sales. Yet behind the scenes...</p>
+      <p>Cash flow is tightening. Margins are shrinking. Costs continue to rise.</p>
+      <p>Teams are working harder. Owners are taking home less.</p>
+    </div>
+    <p class="pivot">Growth should create freedom. Not more <span>pressure.</span></p>
+    <p class="lede">If your revenue is increasing but your profit isn't, something is broken. At Grow Spark Consulting, we help founders identify the hidden factors reducing profitability and redesign their business for sustainable, profitable growth.</p>
+    <div class="cta-row">
+      <a href="#assessment" class="btn-primary">Request a Profitability Assessment™</a>
+      <a href="#framework" class="btn-secondary">Discover Our Business Transformation Framework™</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: SYMPTOMS -->
+<section class="symptoms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">A Quick Check</span>
+      <h2>Does This Sound Familiar?</h2>
+    </div>
+    <div class="symptom-grid reveal">
+      <div class="symptom-item"><span class="mark2">—</span><p>Revenue is increasing, but profits remain flat.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Your operating costs keep rising.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Sales are growing, but cash flow feels unpredictable.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>You are winning more customers but making less money.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Discounting has become the easiest way to close deals.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Your team is busy, but productivity hasn't improved.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>You're unsure where profits are disappearing.</p></div>
+      <div class="symptom-item"><span class="mark2">—</span><p>Growth feels harder than it should.</p></div>
+    </div>
+    <p class="symptoms-note reveal">If these challenges sound familiar, the problem isn't revenue. <strong>It's how your business converts revenue into profit.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 3: PROFIT IS DESIGNED -->
+<section class="designed" id="whats-holding-you-back">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Real Issue</span>
+      <h2>Profit Is Designed. Not Discovered.</h2>
+    </div>
+    <div class="designed-intro reveal">
+      <p>Many companies assume profitability is the result of selling more.</p>
+      <p>The truth is different. Profitability is built through:</p>
+    </div>
+    <div class="designed-chips reveal">
+      <span>A Scalable Operating Model</span><span>Healthy Pricing</span><span>Efficient Processes</span>
+      <span>Clear Financial Visibility</span><span>Strong Customer Retention</span><span>Operational Discipline</span>
+      <span>Better Leadership Decisions</span>
+    </div>
+    <div class="designed-close reveal">
+      <p>Businesses rarely become highly profitable by accident.</p>
+      <p class="strong">They become profitable by design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: HIDDEN REASONS -->
+<section class="hidden">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What's Really Happening</span>
+      <h2>The Hidden Reasons Profit Declines</h2>
+      <p>Revenue growth can hide serious structural problems. Common causes include:</p>
+    </div>
+    <div class="hidden-grid reveal">
+      <div class="hidden-card">Pricing that no longer reflects value.</div>
+      <div class="hidden-card">High customer acquisition costs.</div>
+      <div class="hidden-card">Manual operational processes.</div>
+      <div class="hidden-card">Poor inventory management.</div>
+      <div class="hidden-card">Low employee productivity.</div>
+      <div class="hidden-card">Unclear financial reporting.</div>
+      <div class="hidden-card">Inefficient customer service.</div>
+      <div class="hidden-card">Excessive overheads.</div>
+      <div class="hidden-card">Lack of performance metrics.</div>
+    </div>
+    <p class="hidden-close reveal">Without identifying the real cause, businesses often continue growing while becoming less profitable.</p>
+  </div>
+</section>
+
+<!-- SECTION 5: COST OF IGNORING PROFITABILITY -->
+<section class="cost">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Cost Of Ignoring Profitability</span>
+      <h2>Every Month It Continues, The Business Gets Weaker</h2>
+    </div>
+    <div class="cost-flow reveal">
+      <span>Cash reserves reduce</span>
+      <span>Investment opportunities disappear</span>
+      <span>Expansion becomes more difficult</span>
+      <span>Pressure on leadership increases</span>
+      <span>Business valuation decreases</span>
+    </div>
+    <p class="cost-line reveal">Revenue may continue to grow. But the business becomes weaker.</p>
+  </div>
+</section>
+
+<!-- SECTION 6: ASSESSMENT -->
+<section class="approach" id="assessment">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Approach</span>
+      <h2>Our Profitability Assessment™</h2>
+      <p>Every engagement begins with understanding how your business creates — and loses — value. We evaluate:</p>
+    </div>
+    <div class="assess-grid reveal">
+      <div class="assess-card"><span>Revenue Streams</span></div>
+      <div class="assess-card"><span>Pricing Strategy</span></div>
+      <div class="assess-card"><span>Gross Margins</span></div>
+      <div class="assess-card"><span>Operating Costs</span></div>
+      <div class="assess-card"><span>Customer Acquisition Costs</span></div>
+      <div class="assess-card"><span>Customer Lifetime Value</span></div>
+      <div class="assess-card"><span>Operational Efficiency</span></div>
+      <div class="assess-card"><span>Sales Performance</span></div>
+      <div class="assess-card"><span>Financial Reporting</span></div>
+      <div class="assess-card"><span>Leadership Decision-Making</span></div>
+      <div class="assess-card"><span>Business Model</span></div>
+    </div>
+    <p style="text-align:center; color:var(--grey); font-size:15px; margin-top:36px;">The result is a practical roadmap to improve profitability without relying solely on increasing sales.</p>
+  </div>
+</section>
+
+<!-- SECTION 7: FRAMEWORK -->
+<section class="framework" id="framework">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Methodology</span>
+      <h2>The Grow Spark Profit Transformation Framework™</h2>
+    </div>
+    <div class="fw-diagram reveal">
+      <div class="fw-line"></div>
+      <div class="fw-step"><div class="node">01</div><h4>Discover</h4><p>Understand how your business generates revenue and profit.</p></div>
+      <div class="fw-step"><div class="node">02</div><h4>Analyse</h4><p>Identify the hidden financial and operational constraints reducing profitability.</p></div>
+      <div class="fw-step"><div class="node">03</div><h4>Optimise</h4><p>Improve pricing, operations, customer value and resource allocation.</p></div>
+      <div class="fw-step"><div class="node">04</div><h4>Execute</h4><p>Implement improvements across leadership, systems and operations.</p></div>
+      <div class="fw-step"><div class="node">05</div><h4>Grow</h4><p>Build a business that creates sustainable profit and long-term enterprise value.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: OUTCOMES -->
+<section class="outcomes">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Business Outcomes</span>
+      <h2>What Profitability Transformation Delivers</h2>
+    </div>
+    <div class="outcomes-grid reveal">
+      <div class="outcome-card"><span class="n">01</span><h4>Higher Profit Margins</h4></div>
+      <div class="outcome-card"><span class="n">02</span><h4>Healthier Cash Flow</h4></div>
+      <div class="outcome-card"><span class="n">03</span><h4>Improved Pricing Strategy</h4></div>
+      <div class="outcome-card"><span class="n">04</span><h4>Reduced Operational Waste</h4></div>
+      <div class="outcome-card"><span class="n">05</span><h4>Better Financial Visibility</h4></div>
+      <div class="outcome-card"><span class="n">06</span><h4>More Productive Teams</h4></div>
+      <div class="outcome-card"><span class="n">07</span><h4>Stronger Customer Retention</h4></div>
+      <div class="outcome-card"><span class="n">08</span><h4>Higher Business Valuation</h4></div>
+      <div class="outcome-card"><span class="n">09</span><h4>Sustainable Long-Term Growth</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: WHO WE WORK WITH -->
+<section class="who">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Who We Work With</span>
+      <h2>Built For Growing, Ambitious Businesses</h2>
+    </div>
+    <div class="who-box reveal">
+      <ul class="who-list">
+        <li>Founder-led businesses</li>
+        <li>Family-owned companies</li>
+        <li>Manufacturing businesses</li>
+        <li>Retail organisations</li>
+        <li>Professional services firms</li>
+        <li>Healthcare providers</li>
+      </ul>
+      <div class="who-revenue">
+        <span class="label">Typical Annual Revenue</span>
+        <div class="range">₹5 Crore – ₹100 Crore</div>
+        <p>Businesses preparing for expansion or investment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: WHY GROW SPARK -->
+<section class="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Grow Spark</span>
+      <h2>Why Grow Spark?</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><span class="num">01</span><p>We don't focus on revenue alone. We focus on building stronger businesses.</p></div>
+      <div class="why-card"><span class="num">02</span><p>We identify hidden financial constraints.</p></div>
+      <div class="why-card"><span class="num">03</span><p>We combine strategy with operational improvement.</p></div>
+      <div class="why-card"><span class="num">04</span><p>We deliver measurable business outcomes.</p></div>
+      <div class="why-card"><span class="num">05</span><p>We partner with leadership teams — not just finance teams.</p></div>
+    </div>
+    <p class="why-close reveal">Because a growing business should also be a profitable business.</p>
+  </div>
+</section>
+
+<!-- SECTION 11: FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span>Will you audit our financial statements?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We review financial performance as one component of a broader business profitability assessment, focusing on strategic and operational improvements rather than statutory auditing.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can profitability improve without increasing sales?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Many organisations improve profitability through pricing, operational efficiency, customer retention and better resource allocation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you work with finance teams?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. We collaborate with leadership, finance and operations teams to ensure recommendations are practical and measurable.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Will this help improve business valuation?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>In many cases, improving profitability, cash flow and operational efficiency strengthens the overall value and attractiveness of the business.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap reveal">
+    <h2>Revenue Builds Attention.<br>Profit Builds Great Businesses.</h2>
+    <p>Stop chasing growth that doesn't create value. Build a business that's stronger, healthier and more profitable.</p>
+    <div class="cta-row">
+      <a href="#assessment" class="btn-primary">Request Your Profitability Assessment™</a>
+      <a href="index.html#contact" class="btn-secondary">Book An Executive Strategy Session</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="statement">
+      <strong>Grow Spark Consulting helps founders transform growing businesses into profitable, scalable and high-value organisations.</strong>
+      We don't just help businesses sell more. We help them earn more.
+    </p>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#framework">Framework</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <p class="copyright">© 2026 Grow Spark Consulting. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.1});
+  revealEls.forEach(el=>io.observe(el));
+
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.navlinks');
+  toggle.addEventListener('click', ()=>{
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; padding:24px 32px; border-bottom:1px solid #E4E6E8; gap:20px;';
+  });
+
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other=>{
+        if(other !== item){ other.classList.remove('open'); other.querySelector('.faq-a').style.maxHeight = null; }
+      });
+      item.classList.toggle('open', !isOpen);
+      a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+    });
+  });
+</script>
+
+</body>
+</html>

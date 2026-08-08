@@ -4,8 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const STAGGER = 0.08;
-const DURATION = 0.7;
-const DISTANCE = 20;
+const STAGGER_CAP = 6;
+const DURATION_SINGLE = 0.7;
+const DURATION_STAGGER = 0.6;
+const DISTANCE = 24;
 
 /**
  * Scroll-reveal for section-level blocks. When a [data-reveal] element has
@@ -27,7 +29,8 @@ export function initScrollReveal() {
 
   targets.forEach((el) => {
     const children = Array.from(el.children);
-    const animTargets = children.length > 1 ? children : el;
+    const isStaggered = children.length > 1;
+    const animTargets = isStaggered ? children : el;
 
     gsap.fromTo(
       animTargets,
@@ -35,9 +38,22 @@ export function initScrollReveal() {
       {
         opacity: 1,
         y: 0,
-        duration: DURATION,
+        duration: isStaggered ? DURATION_STAGGER : DURATION_SINGLE,
         ease: 'expo.out',
-        stagger: children.length > 1 ? STAGGER : 0,
+        // Capped rather than a flat per-item stagger: past the 6th item the
+        // remaining ones join at the 6th's delay, so long grids (e.g. a
+        // 9-card outcomes list) finish revealing in a consistent window
+        // instead of trailing further out the more items are added.
+        stagger: isStaggered
+          ? (index) => Math.min(index, STAGGER_CAP - 1) * STAGGER
+          : 0,
+        // Without this, GSAP leaves an inline transform/opacity on every
+        // target once the tween finishes — which permanently outranks any
+        // CSS :hover/:active transform on that same element (buttons,
+        // .pillar-card, etc.), silently killing their hover-lift after the
+        // reveal completes. Clearing hands the property back to the
+        // stylesheet the moment the animation is done.
+        clearProps: 'transform,opacity',
         scrollTrigger: {
           trigger: el,
           start: 'top 85%',

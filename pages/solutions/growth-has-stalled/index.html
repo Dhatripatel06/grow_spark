@@ -6,14 +6,16 @@
 <title>Growth Has Stalled? Let's Find Out Why — Grow Spark Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
   :root{
     --white:#ffffff;
     --charcoal:#14171A;
     --charcoal-soft:#1E2226;
     --grey:#565C63;
-    --grey-light:#8A9096;
+    --grey-light:#696D72;
     --hairline:#E4E6E8;
     --panel:#F6F7F7;
     --emerald:#0B5E45;
@@ -104,16 +106,16 @@
   .constraint{padding:110px 0;}
   .constraint-compare{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--hairline); border:1px solid var(--hairline); margin-bottom:56px;}
   .compare-col{background:var(--white); padding:36px 34px;}
-  .compare-col h4{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; margin-bottom:20px;}
-  .compare-col.symptom-col h4{color:var(--grey-light);}
-  .compare-col.cause-col h4{color:var(--emerald);}
+  .compare-col h3{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; margin-bottom:20px;}
+  .compare-col.symptom-col h3{color:var(--grey-light);}
+  .compare-col.cause-col h3{color:var(--emerald);}
   .compare-col ul{list-style:none;}
   .compare-col li{font-size:15.5px; padding:10px 0; border-bottom:1px solid var(--hairline);}
   .compare-col li:last-child{border-bottom:none;}
   .compare-col.symptom-col li{color:var(--grey-light); text-decoration:line-through; text-decoration-color:var(--hairline);}
   .compare-col.cause-col li{color:var(--charcoal-soft); font-weight:500;}
   .constraint-list{max-width:760px; margin:0 auto;}
-  .constraint-list h4{font-size:16px; margin-bottom:20px; text-align:center; color:var(--charcoal);}
+  .constraint-list h3{font-size:16px; margin-bottom:20px; text-align:center; color:var(--charcoal);}
   .constraint-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
   .constraint-card{border:1px solid var(--hairline); padding:18px 20px; font-size:14.5px; color:var(--charcoal-soft); font-weight:500;}
 
@@ -142,7 +144,7 @@
   .fw-step{flex:1; position:relative; z-index:1; text-align:center; padding:0 14px;}
   .fw-step .node{width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); margin:0 auto 22px; display:flex; align-items:center; justify-content:center; font-family:'Manrope'; font-weight:700; font-size:14px; color:#6FE3B4; transition:background .3s var(--ease);}
   .fw-step:hover .node{background:rgba(255,255,255,0.18);}
-  .fw-step h4{color:var(--white); font-size:17px; margin-bottom:10px; font-weight:700;}
+  .fw-step h3{color:var(--white); font-size:17px; margin-bottom:10px; font-weight:700;}
   .fw-step p{color:#BFE0D2; font-size:13.5px; max-width:190px; margin:0 auto;}
 
   /* ---------- Outcomes (Section 7) ---------- */
@@ -150,7 +152,7 @@
   .outcomes-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
   .outcome-card{background:var(--white); padding:30px 26px;}
   .outcome-card .n{font-family:'Manrope'; font-weight:700; font-size:12px; color:var(--emerald); margin-bottom:14px; display:block;}
-  .outcome-card h4{font-size:15.5px; font-weight:600;}
+  .outcome-card h3{font-size:15.5px; font-weight:600;}
 
   /* ---------- Who we work with (Section 8) ---------- */
   .who{padding:110px 0;}
@@ -221,7 +223,7 @@
   <nav class="nav">
     <a href="/" class="logo"><span class="mark"></span>Grow Spark</a>
     <div class="navlinks">
-      <a href="/#home"></a>
+      <a href="/#home">Home</a>
       <a href="/#challenges">Business Challenges</a>
       <a href="/#framework">Our Framework</a>
       <a href="/#industries">Industries</a>
@@ -233,6 +235,8 @@
     <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
+
+<main>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -285,7 +289,7 @@
     </div>
     <div class="constraint-compare reveal">
       <div class="compare-col symptom-col">
-        <h4>What Gets Blamed</h4>
+        <h3>What Gets Blamed</h3>
         <ul>
           <li>Marketing</li>
           <li>Sales</li>
@@ -295,14 +299,14 @@
         </ul>
       </div>
       <div class="compare-col cause-col">
-        <h4>What's Usually Actually True</h4>
+        <h3>What's Usually Actually True</h3>
         <ul>
           <li>The real issue is hidden somewhere inside the business</li>
         </ul>
       </div>
     </div>
     <div class="constraint-list reveal">
-      <h4>The real constraint is usually one of these:</h4>
+      <h3>The real constraint is usually one of these:</h3>
       <div class="constraint-grid">
         <div class="constraint-card">An operating model that no longer supports growth.</div>
         <div class="constraint-card">Leadership teams pulling in different directions.</div>
@@ -368,11 +372,11 @@
     </div>
     <div class="fw-diagram reveal">
       <div class="fw-line"></div>
-      <div class="fw-step"><div class="node">01</div><h4>Discover</h4><p>Understand your business, leadership team, market and long-term vision.</p></div>
-      <div class="fw-step"><div class="node">02</div><h4>Diagnose</h4><p>Identify the real constraints limiting growth and performance.</p></div>
-      <div class="fw-step"><div class="node">03</div><h4>Design</h4><p>Develop a practical transformation roadmap aligned to your business goals.</p></div>
-      <div class="fw-step"><div class="node">04</div><h4>Deploy</h4><p>Work alongside your leadership team to implement the highest-impact initiatives.</p></div>
-      <div class="fw-step"><div class="node">05</div><h4>Drive</h4><p>Measure outcomes, optimise continuously and build sustainable growth.</p></div>
+      <div class="fw-step"><div class="node">01</div><h3>Discover</h3><p>Understand your business, leadership team, market and long-term vision.</p></div>
+      <div class="fw-step"><div class="node">02</div><h3>Diagnose</h3><p>Identify the real constraints limiting growth and performance.</p></div>
+      <div class="fw-step"><div class="node">03</div><h3>Design</h3><p>Develop a practical transformation roadmap aligned to your business goals.</p></div>
+      <div class="fw-step"><div class="node">04</div><h3>Deploy</h3><p>Work alongside your leadership team to implement the highest-impact initiatives.</p></div>
+      <div class="fw-step"><div class="node">05</div><h3>Drive</h3><p>Measure outcomes, optimise continuously and build sustainable growth.</p></div>
     </div>
   </div>
 </section>
@@ -386,14 +390,14 @@
       <p>Our objective is to help you:</p>
     </div>
     <div class="outcomes-grid reveal">
-      <div class="outcome-card"><span class="n">01</span><h4>Increase Revenue</h4></div>
-      <div class="outcome-card"><span class="n">02</span><h4>Improve Profitability</h4></div>
-      <div class="outcome-card"><span class="n">03</span><h4>Reduce Operational Complexity</h4></div>
-      <div class="outcome-card"><span class="n">04</span><h4>Improve Customer Experience</h4></div>
-      <div class="outcome-card"><span class="n">05</span><h4>Build Scalable Systems</h4></div>
-      <div class="outcome-card"><span class="n">06</span><h4>Strengthen Leadership Alignment</h4></div>
-      <div class="outcome-card"><span class="n">07</span><h4>Accelerate AI Adoption</h4></div>
-      <div class="outcome-card"><span class="n">08</span><h4>Increase Enterprise Value</h4></div>
+      <div class="outcome-card"><span class="n">01</span><h3>Increase Revenue</h3></div>
+      <div class="outcome-card"><span class="n">02</span><h3>Improve Profitability</h3></div>
+      <div class="outcome-card"><span class="n">03</span><h3>Reduce Operational Complexity</h3></div>
+      <div class="outcome-card"><span class="n">04</span><h3>Improve Customer Experience</h3></div>
+      <div class="outcome-card"><span class="n">05</span><h3>Build Scalable Systems</h3></div>
+      <div class="outcome-card"><span class="n">06</span><h3>Strengthen Leadership Alignment</h3></div>
+      <div class="outcome-card"><span class="n">07</span><h3>Accelerate AI Adoption</h3></div>
+      <div class="outcome-card"><span class="n">08</span><h3>Increase Enterprise Value</h3></div>
     </div>
   </div>
 </section>
@@ -480,6 +484,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">

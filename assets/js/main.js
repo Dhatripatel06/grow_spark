@@ -28,7 +28,6 @@ import {
 
 import { initSmoothScroll } from './smooth-scroll.js';
 import { initNav } from './nav.js';
-import { initHeroCarousel } from './hero-carousel.js';
 import { initAnchorLinks } from './anchor-links.js';
 import { initServiceTabs } from './service-tabs.js';
 import { initScrollReveal } from '../animations/reveal.js';
@@ -69,7 +68,13 @@ createIcons({
 
 const lenis = initSmoothScroll();
 initNav();
-initHeroCarousel();
+// Swiper (hero-carousel.js's only reason to exist) is a full external
+// library only the homepage uses — code-split so the other 10 pages never
+// download it. The DOM check runs first so no request fires on pages
+// without a hero carousel at all.
+if (document.querySelector('[data-hero-swiper]')) {
+  import('./hero-carousel.js').then(({ initHeroCarousel }) => initHeroCarousel());
+}
 initAnchorLinks(lenis);
 initServiceTabs();
 initScrollReveal();

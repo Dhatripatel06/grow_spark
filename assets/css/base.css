@@ -99,6 +99,12 @@
     transform: translateY(-2px);
   }
 
+  /* Pressed feedback: cancels the hover lift so a click reads as a tactile
+     push rather than the button staying floated while held down. */
+  .btn:active {
+    transform: translateY(0);
+  }
+
   .btn-arrow {
     transition: transform .3s var(--ease-out-expo);
   }
@@ -156,6 +162,10 @@
     font-weight: 500;
     cursor: pointer;
     list-style: none;
+    transition: color .2s var(--ease-standard);
+  }
+  .drawer-accordion summary:hover {
+    color: var(--color-accent);
   }
   .drawer-accordion summary::-webkit-details-marker {
     display: none;
@@ -170,6 +180,10 @@
     padding: 8px 0;
     font-size: 14.5px;
     color: var(--color-ink-soft);
+    transition: color .2s var(--ease-standard);
+  }
+  .drawer-accordion-body a:hover {
+    color: var(--color-accent);
   }
 
   /* ---------- Nav: two color states ----------
@@ -629,7 +643,7 @@
   .outcome-card .n {
     color: var(--color-accent);
   }
-  .outcome-card h4 {
+  .outcome-card h3 {
     font-size: 16px;
     font-weight: 600;
   }
